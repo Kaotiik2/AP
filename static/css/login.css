@@ -1,0 +1,94 @@
+/* Réinitialisation des styles par défaut du navigateur */
+body,
+html,
+div,
+h1,
+label,
+input,
+img,
+ion-icon {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style de l'arrière-plan de la page */
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+/* Style de la boîte de connexion */
+.card {
+  width: 80%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 2% auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style du logo */
+.leftside img {
+  max-width: 100%;
+}
+
+/* Style du formulaire de connexion */
+.login-box {
+  margin-top: 20px;
+}
+
+.login-box ion-icon {
+  font-size: 20px;
+  margin-right: 10px;
+  color: #333;
+}
+
+.email,
+.password,
+.label {
+  margin-bottom: 20px;
+}
+
+.email input,
+.password input,
+input[type="password"] {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Style du bouton de connexion */
+.button,
+.submit-enabled {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.submit-disabled {
+  background-color: #EEEEEE;
+  color: #AAAAAA;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: default;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.input_1 {
+  margin: 10px;
+  padding: 5px;
+}

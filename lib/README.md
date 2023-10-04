@@ -1,0 +1,1 @@
+Here rest all files that have for only purpose to be ``required_once`` or ``include``d. These files are not meant to be GET by any client and maybe should be blacklisted in LAMP.

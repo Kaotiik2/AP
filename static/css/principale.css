@@ -1,0 +1,268 @@
+body {
+  font-family: 'Roboto', sans-serif !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.mainscreen {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #dae6fa;
+}
+
+h1{
+  color: #8eb2ea;
+  margin-top: 30px;
+}
+
+.card {
+  width: 1150px;
+  height: 600px;
+  margin: auto;
+  background: white;
+  position: center;
+  align-self: center;
+  top: 50rem;
+  border-radius: 1.5rem;
+  box-shadow: 4px 3px 20px #3535358c;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.leftside {
+  background: #8eb2ea;
+  width: 1150px;
+  height: 600px;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+}
+
+img{
+  margin-top: 90px;
+  margin-left: 45px;
+}
+
+.rightside {
+  background-color: #ffffff;
+  
+  width: 35rem;
+  border-bottom-right-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  padding: 1rem 2rem 3rem 3rem;
+}
+
+.rightside h1{
+  text-align: center;
+}
+
+.button {
+  background: #87b0ee;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-weight: 350;
+  font-size: 1.2rem;
+  margin-top: 40px;
+  width: 100%;
+  letter-spacing: .11rem;
+  outline: none;
+}
+
+.button:hover {
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 3px 3px 6px #38373785;
+}
+
+.buttonn {
+  background: #87b0ee;
+  padding: 2px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 3500;
+  font-size: 1.2rem;
+  margin-top: 2px;
+  width: 100%;
+  letter-spacing: .11rem;
+  outline: none;
+}
+
+.buttonn:hover {
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 3px 3px 6px #38373785;
+}
+
+/*PRENOM*/
+.prenom {
+  background: white;
+  box-shadow: 0 0 2em #e6e9f9;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  border-radius: 20px;
+  color: #a6a6a6;
+  margin-top: 30px;
+}
+.prenom input {
+  outline: none;
+  border: none;
+}
+.prenom input::-moz-placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.prenom input:-ms-input-placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.prenom input::placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.prenom ion-icon {
+  color: #4d4d4d;
+  margin-bottom: -0.2em;
+
+  /*NOM*/
+}
+.nom {
+  background: white;
+  box-shadow: 0 0 2em #e6e9f9;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  border-radius: 20px;
+  color: #a6a6a6;
+  margin-top: 20px;
+}
+.nom input {
+  outline: none;
+  border: none;
+}
+.nom input::-moz-placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.nom input:-ms-input-placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.nom input::placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.nom ion-icon {
+  color: #4d4d4d;
+  margin-bottom: -0.2em;
+}
+.nom .show-hide {
+  margin-right: -5em;
+}
+
+/*DATE*/
+.date {
+  background: white;
+  box-shadow: 0 0 2em #e6e9f9;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  border-radius: 20px;
+  margin-top: 20px;
+  
+}
+.date input {
+  outline: none;
+  border: none;
+}
+.date input::-moz-placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.date input:-ms-input-placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.date input::placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.date ion-icon {
+  color: #4d4d4d;
+  margin-bottom: -0.2em;
+}
+
+/*POSTE*/
+.poste {
+  background: white;
+  box-shadow: 0 0 2em #e6e9f9;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  border-radius: 20px;
+  color: #a6a6a6;
+  margin-top: 20px;
+}
+.poste input {
+  outline: none;
+  border: none;
+}
+.poste input::-moz-placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.poste input:-ms-input-placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.poste input::placeholder {
+  color: #a6a6a6;
+  font-size: 0.9em;
+}
+.poste ion-icon {
+  color: #4d4d4d;
+  margin-bottom: -0.2em;
+}
+
+  /*email*/
+  .email {
+      background: white;
+      box-shadow: 0 0 2em #e6e9f9;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1em;
+      border-radius: 20px;
+      color: #a6a6a6;
+      margin-top: 20px;
+    }
+    .email input {
+      outline: none;
+      border: none;
+    }
+    .email input::-moz-placeholder {
+      color: #a6a6a6;
+      font-size: 0.9em;
+    }
+    .email input:-ms-input-placeholder {
+      color: #a6a6a6;
+      font-size: 0.9em;
+    }
+    .email input::placeholder {
+      color: #a6a6a6;
+      font-size: 0.9em;
+    }
+    .email ion-icon {
+      color: #4d4d4d;
+      margin-bottom: -0.2em;
+    }
