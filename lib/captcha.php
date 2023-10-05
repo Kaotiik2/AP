@@ -46,6 +46,7 @@ function captcha_verify(string $answer)
 {
     $captcha = $_SESSION[CAPTCHA_STORAGE];
     $answer_hashed = hash("sha256", SALT . $answer);
+    captcha_clear();
 
     return $answer_hashed == $captcha;
 }
