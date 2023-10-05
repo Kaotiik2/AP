@@ -6,20 +6,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/static/css/secretaire.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
     <script src="/static/js/forms_checks/generic.js" defer></script>
+    <script src="/static/js/forms_checks/pre_admission/form-1-check.js" defer></script>
 </head>
 
 <body>
+    <img src="/static/images/LPFS_logo.png" alt="" class="logo">
+    <img src="/static/images/derou2.png" alt="" class="derou2">
 
-    <img src="/images/LPFS_logo.png" alt="" class="logo">
-    <img src="/images/derou2.png" alt="" class="derou2">
 
-
-    <form action="./pre_admission_step2.php" method="post">
+    <form action="./pre_admission_step2.php" method="post" id="pre-admission-form-1">
         <?php
         include("../../lib/relay_post.php");
         ?>
-        <p id="form-error"></p>
+        <p id="form-error" class="invalid"></p>
         <!-- Partie identité -->
         <label for="civilite">Civilité</label>
         <select name="civilite" required>

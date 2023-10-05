@@ -3,8 +3,9 @@
 
 
 <head>
-    <link rel="stylesheet" href="/static/css/secretaire.css">
-    <script src="/static/js/forms_checks/secretaire/form-2-check.js" defer></script>
+    <link rel="stylesheet" href="/static/css/secretaire.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="/static/js/forms_checks/pre_admission/form-2-check.js" defer></script>
 </head>
 
 <body>
@@ -15,7 +16,7 @@
         <?php
         require_once("../../lib/relay_post.php");
         ?>
-        <p id="form-error"></p>
+        <p id="form-error" class="invalid"></p>
 
         <!-- Partie sécu -->
         <label for="caisse_secu">Organisme de sécurité sociale/ Nom de la Caisse de sécurité sociale</label>
