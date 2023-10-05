@@ -1,6 +1,8 @@
 <?php
 session_start();
-if (isset($_POST['username']) && isset($_POST['password'])) {
+var_dump($_POST);
+
+if (isset($_POST["username"]) && isset($_POST["password"])) {
     require_once("../lib/captcha.php");
     require_once("../model/users.php");
 
@@ -23,10 +25,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     // Connection didn't fail, the model returned a valid User object
     else {
-        $_SESSION["user"] = $user;
+        $_SESSION["user"] = serialize($user);
 
         if (!$user->has_connected_before || $user->must_change_password) {
             header("Location: /views/password_reset.php");
+            exit;
         }
 
         switch ($user->id_role) {
@@ -39,5 +42,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         };
     }
 } else {
+    var_dump($_POST);
+    exit;
     header('Location: /views/login.php');
 }
