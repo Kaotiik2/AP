@@ -17,7 +17,7 @@
         <img src="/static/images/LPFS_logo.png" alt="">
       </div>
       <div class="rightside">
-        <form action="/controller/login.php" method="POST">
+        <form action="/controller/login.php" method="POST" id="login-form">
           <h1>Se Connecter</h1>
           <div class="login-box">
             <p id="error-display" class="invalid"></p>
@@ -40,7 +40,6 @@
             <input type="text" name="captcha_answer" class="input_1" /> <br>
             <button type="submit" class="button">Connexion</button>
           </div>
-
         </form>
       </div>
 

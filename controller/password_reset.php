@@ -13,11 +13,10 @@ if (!captcha_verify($_POST["captcha_answer"])) {
 // Captcha success
 else {
     extract($_POST);
-    var_dump($user);
 
     if (isset($submit) && $new_password == $password_repeat) {
         // New password cannot be equals to the old one.
-        if ($new_password == get_user_password($user->$id_user)) {
+        if ($user->test_password($new_password)) {
             header("Location: /views/password_reset.php?error=10");
         }
 

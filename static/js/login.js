@@ -19,3 +19,8 @@ const error_code = urlParams.get("error");
 if (error_code != null) {
     document.querySelector("#error-display").textContent = login_errors.find((value) => value.code == error_code).reason;
 }
+
+document.querySelector("#login-form").addEventListener("submit", (e) => {
+    let password = document.querySelector("input[type='password']").value;
+
+});
