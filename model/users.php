@@ -18,20 +18,22 @@ class User
         return user_by_mail($mail);
     }
 
-    public static function login(string $mail, string $hashed_password): User|false
+    /// Tries to login with the mail and the password passed as parameters
+    /// Returns a ``User`` object if login is successful, false otherwise
+    public static function login(string $mail, string $password): User|false
     {
         $user = User::from_database($mail);
 
-        if (is_int($user)) {
+        if (is_int($user))
             return false;
-        }
 
-        if ($user->validate_login($hashed_password)) {
+        if ($user->validate_login($password))
             return $user;
-        }
+        else
+            return false;
     }
 
-    // Registers a new user in the database
+    /// Registers a new user in the database
     public static function register(string $name, string $surname, string $mail, string $birth_date, $telephone, int $id_poste, string $password): User|false
     {
         include("../lib/config.php");
@@ -67,15 +69,10 @@ class User
         if (!$result) {
             return false;
         }
-
         return User::from_database($mail);
     }
 
-    public function test_password(string $input): bool
-    {
-        return $this->hash_password($input) == $this->password;
-    }
-
+    /// Checks that the password passed in parameters is the same as the one in database.
     private function validate_login($password): bool
     {
         return password_verify($password . $this->password_salt, $this->password);
