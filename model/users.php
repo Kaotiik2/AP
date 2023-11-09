@@ -78,15 +78,7 @@ class User
 
     private function validate_login($password): bool
     {
-        $hashed = $this->hash_password($password);
-
-        return $hashed == $this->password;
-    }
-
-    private function hash_password($password): string
-    {
-        // password_hash(password_hash($clear_password, ...) + password_salt, PASSWORD_ARGON2ID);
-        return password_hash($password . $this->password_salt, PASSWORD_ARGON2ID);
+        return password_verify($password . $this->password_salt, $this->password);
     }
 }
 
