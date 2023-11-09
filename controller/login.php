@@ -3,9 +3,10 @@ session_start();
 require_once("../lib/captcha.php");
 require_once("../model/users.php");
 
-if (!captcha_verify($_POST["captcha_answer"])) {
+if (!isset($_POST["captcha_answer"]) || !captcha_verify($_POST["captcha_answer"])) {
     captcha_clear();
-    header("Location: login.php?erreur=5"); // Erreur Captcha
+    session_destroy();
+    header("Location: /views/login.php?erreur=5"); // Erreur Captcha
     exit;
 }
 
@@ -16,8 +17,8 @@ $password = $_POST['password'];
 $user = User::login($username, $password);
 
 // Connection failed
-if (is_int($user)) {
-    header("Location: login.php?error=$user");
+if (!$user) {
+    header("Location: /views/login.php?error=0");
 }
 
 // Connection didn't fail, the model returned a valid User object
