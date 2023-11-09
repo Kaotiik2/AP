@@ -17,7 +17,7 @@
         <img src="/static/images/LPFS_logo.png" alt="">
       </div>
       <div class="rightside">
-        <form action="/controller/login.php" method="POST" id="login-form">
+        <form action="/controller/login.php" method="post" id="login-form">
           <h1>Se Connecter</h1>
           <div class="login-box">
             <p id="error-display" class="invalid"></p>
