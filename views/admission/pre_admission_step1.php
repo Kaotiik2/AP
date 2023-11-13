@@ -18,14 +18,20 @@
 
     <form action="./pre_admission_step2.php" method="post" id="pre-admission-form-1">
         <?php
-        include("../../lib/relay_post.php");
+
+        use lib\utils;
+
+        utils\relay_post();
         ?>
         <p id="form-error" class="invalid"></p>
         <!-- Partie identité -->
         <label for="civilite">Civilité</label>
         <select name="civilite" required>
             <?php
-            require_once("../../lib/config.php");
+
+            use lib\db;
+
+            $db = db\get_db();
             $stmt = $db->prepare("SELECT * from `civilite`");
             $result = $stmt->execute();
             $rows = $stmt->fetchAll();

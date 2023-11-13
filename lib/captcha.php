@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+namespace lib\captcha;
+
 define("CAPTCHA_STORAGE", "captcha");
 define("SALT", "1$$0ul4ch4ncl4");
 

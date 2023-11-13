@@ -1,9 +1,20 @@
 <?php
-$host = "192.168.20.70";
+
+namespace lib\db;
+
+use PDO;
+
+$host = "172.17.0.2";
 
 $db = new PDO(
     "mysql:host=$host;dbname=LPFS;charset=utf8",
-    "dev",
-    "azerty1234+",
+    "root",
+    "password",
     [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
 );
+
+function get_db(): PDO
+{
+    global $db;
+    return $db;
+}

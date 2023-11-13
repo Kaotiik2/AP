@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +16,10 @@
         <label for="admission_type">Type d'admission :</label>
         <select name="admission_type" required>
             <?php
-            require_once("../lib/config.php");
+
+            use lib\db;
+
+            $db = db\get_db();
             $stmt = $db->prepare("SELECT * from `type_hospitalisation`");
             $result = $stmt->execute();
             $rows = $stmt->fetchAll();

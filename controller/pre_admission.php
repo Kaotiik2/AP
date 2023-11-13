@@ -1,8 +1,9 @@
 <?php
 
-require_once("../model/pre_admission.php");
+use model\pre_admission;
+use lib\utils;
 
-$result = new_pre_admission($_POST);
+$result = pre_admission\new_pre_admission($_POST);
 
 if (!$result) {
 ?>
@@ -19,7 +20,7 @@ if (!$result) {
 ?>
     <form action="/views/admission/confirm_pre_admission.php" method="POST">
         <?php
-        include("../lib/relay_post.php");
+        utils\relay_post();
         ?>
         <input type="submit" />
     </form>

@@ -1,5 +1,9 @@
 <?php
 
+namespace model;
+
+use lib\db;
+
 class Patient
 {
     public string $healthcare_serial;
@@ -22,7 +26,7 @@ class Patient
 
     public static function from_database(string $healthcare_serial): Patient|mixed
     {
-        include("../lib/config.php");
+        $db = db\get_db();
 
         $req = "SELECT * FROM patients WHERE num_secu = :serial";
         $stmt = $db->prepare($req);

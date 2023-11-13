@@ -1,10 +1,11 @@
 <?php
 session_start();
-require_once("../lib/captcha.php");
-require_once("../model/users.php");
 
-if (!isset($_POST["captcha_answer"]) || !captcha_verify($_POST["captcha_answer"])) {
-    captcha_clear();
+use model\User;
+use lib\captcha;
+
+if (!isset($_POST["captcha_answer"]) || !captcha\captcha_verify($_POST["captcha_answer"])) {
+    captcha\captcha_clear();
     session_destroy();
     header("Location: /views/login.php?erreur=5"); // Erreur Captcha
     exit;

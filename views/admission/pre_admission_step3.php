@@ -12,7 +12,10 @@
 
     <form action="/controller/pre_admission.php" method="post" enctype="multipart/form-data">
         <?php
-        require_once("../../lib/relay_post.php");
+
+        use lib\utils;
+
+        utils\relay_post();
         ?>
         <input type="file" name="ci_recto" required />
         <input type="file" name="ci_verso" required />

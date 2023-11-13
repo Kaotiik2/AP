@@ -14,7 +14,10 @@
 
     <form action="pre_admission_step3.php" method="post" id="pre-admission-form-2">
         <?php
-        require_once("../../lib/relay_post.php");
+
+        use lib\utils;
+
+        utils\relay_post();
         ?>
         <p id="form-error" class="invalid"></p>
 
@@ -46,7 +49,10 @@
         <label for="type_chambre">Chambre particulière ?</label>
         <select name="type_chambre" required>
             <?php
-            require_once("../../lib/config.php");
+
+            use lib\db;
+
+            $db = db\get_db();
             $stmt = $db->prepare("SELECT * from `type_chambre`");
             $result = $stmt->execute();
             $rows = $stmt->fetchAll();

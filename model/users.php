@@ -1,5 +1,9 @@
 <?php
 
+namespace model;
+
+use lib\db;
+
 define("PASSWORD_LIFE", 90);
 
 class User
@@ -36,7 +40,7 @@ class User
     /// Registers a new user in the database
     public static function register(string $name, string $surname, string $mail, string $birth_date, $telephone, int $id_poste, string $password): User|false
     {
-        include("../lib/config.php");
+        $db = db\get_db();
         $req = "INSERT INTO utilisateurs(nom, prenom, mail, date_naissance, telephone, id_poste, mot_de_passe, premiere_connexion, date_mdp, password_salt)
         VALUES(
             :nom,
@@ -73,7 +77,7 @@ class User
     }
 
     /// Checks that the password passed in parameters is the same as the one in database.
-    private function validate_login($password): bool
+    public function validate_login($password): bool
     {
         return password_verify($password . $this->password_salt, $this->password);
     }
@@ -81,7 +85,7 @@ class User
 
 function user_by_mail(string $mail): User|int
 {
-    include("../lib/config.php");
+    $db = db\get_db();
 
     $req = "SELECT id, id_poste, premiere_connexion, date_mdp, mot_de_passe, password_salt FROM `utilisateurs` 
             WHERE mail = :mail
@@ -131,7 +135,7 @@ function diff_in_days($date)
 
 function get_user_password(int $user_id): string|null
 {
-    include("../lib/config.php");
+    $db = db\get_db();
 
     $req = "SELECT mot_de_passe FROM utilisateurs WHERE id = :id";
 
@@ -146,7 +150,7 @@ function get_user_password(int $user_id): string|null
 
 function update_user_password(int $user_id, string $new_password): bool
 {
-    include("../lib/config.php");
+    $db = db\get_db();
 
     $req = "
         UPDATE utilisateurs

@@ -1,14 +1,15 @@
 <?php
 
-require_once("../lib/captcha.php");
-require_once("../model/users.php");
+use lib\captcha;
+use model;
 
 session_start();
 
 $user = unserialize($_SESSION["user"]);
+var_dump($user);
 
 // Captcha fail
-if (!captcha_verify($_POST["captcha_answer"])) {
+if (!captcha\captcha_verify($_POST["captcha_answer"])) {
     header("Location: /views/password_reset.php?error=5");
 }
 // Captcha success
@@ -21,13 +22,8 @@ else {
             header("Location: /views/password_reset.php?error=10");
         }
 
-        update_user_password($user->$user_id, $new_password);
+        model\update_user_password($user->$user_id, $new_password);
         session_destroy();
         header("Location: login.php");
     }
-}
-
-function cast($value): User
-{
-    return $value;
 }

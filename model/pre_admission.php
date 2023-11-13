@@ -1,10 +1,15 @@
 <?php
 
+namespace model\pre_admission;
+
+use lib\db;
+
 // Returns true if insert_patient got successful, the error string else
 // TODO: Doesn't work lmao
 function new_pre_admission($values): true|string
 {
-    include("../lib/config.php");
+    $db = db\get_db();
+
     extract($values);
 
     // Insertion dans `patients`
