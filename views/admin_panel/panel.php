@@ -5,32 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>LOGIN PAGE LPF</title>
-  <link href="/static/css/admin.css" rel="stylesheet" />
+  <link href="/static/css/panel-admin.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="js/login.js" defer></script>
 </head>
 
 <body>
   <div class="mainscreen">
     <div class="card">
+
       <div class="leftside">
         <img src="LPFS_logo.png" alt="">
       </div>
+
       <section id="infos">
         <div class="maDiv">
-          <div class="maDiv-left">
-            <div class="icon-1">
-              <i class="fa-solid fa-user-plus"></i>
-            </div>
-            <a href="3_secretaire.php">Panel de Pré-admission</a>
-          </div>
-          <div class="maDiv-right">
-            <div class="icon-1">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <a href="/views/admin_panel/panel.php">Panel d'administration</a>
-          </div>
+          <p class="utilisateur">Utilisateurs</p>
+          <a href="./add_user.php">Ajouter</a>
+          <a href="./edit_user.php">Modifier</a>
+          <a href="./edit_user.php">Supprimer</a>
         </div>
+
+        <div class="maDiv">
+          <p class="utilisateur">Roles</p>
+          <a href="./add_roles.php">Ajouter</a>
+          <a href="./edit_roles.php">Modifier</a>
+          <a href="./delete_roles.php">Supprimer</a>
+        </div>
+
+        <div class="maDiv">
+          <p class="utilisateur">Services</p>
+          <a href="./add_service.php">Ajouter</a>
+          <a href="./edit_service.php">Modifier</a>
+          <a href="./delete_service.php">Supprimer</a>
+        </div>
+
       </section>
 
     </div>
