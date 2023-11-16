@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="role.css">
+    <link rel="stylesheet" href="/AP-master/static/css/role.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Modifier un role</title>
@@ -70,7 +70,7 @@ $connexion->close();
     <div class="card">
 
       <div class="leftside">
-        <img src="LPFS_logo.png" alt="">
+        <img src="/AP-master/static/images/LPFS_logo.png" alt="">
       </div>
 
       <h2 class="titre_form">Formulaire de modification de role</h2> 
@@ -100,7 +100,7 @@ $connexion->close();
     <input type="submit" value="Mettre a jour le role" id="ajoute">
     
 </form>
-<a href="../panels/panel-admin.php" ><i class="fa-solid fa-door-open" id="retour"></i></a>
+<a href="/AP-master/views/admin_panel/panel.php" ><i class="fa-solid fa-door-open" id="retour"></i></a>
 
     </div>
 

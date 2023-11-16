@@ -20,23 +20,23 @@
       <section id="infos">
         <div class="maDiv">
           <p class="utilisateur">Utilisateurs</p>
-          <a href="./add_user.php">Ajouter</a>
-          <a href="./edit_user.php">Modifier</a>
-          <a href="./edit_user.php">Supprimer</a>
+          <a href="/AP-master/views/admin_panel/add_roles.php">Ajouter</a>
+          <a href="/AP-master/views/admin_panel/edit_roles.php">Modifier</a>
+          <a href="/AP-master/views/admin_panel/edit_roles.php">Supprimer</a>
         </div>
 
         <div class="maDiv">
           <p class="utilisateur">Roles</p>
-          <a href="./add_roles.php">Ajouter</a>
-          <a href="./edit_roles.php">Modifier</a>
-          <a href="./delete_roles.php">Supprimer</a>
+          <a href="/AP-master/views/admin_panel/add_roles.php">Ajouter</a>
+          <a href="/AP-master/views/admin_panel/edit_roles.php">Modifier</a>
+          <a href="/AP-master/views/admin_panel/edit_roles.php">Supprimer</a>
         </div>
 
         <div class="maDiv">
           <p class="utilisateur">Services</p>
-          <a href="./add_service.php">Ajouter</a>
-          <a href="./edit_service.php">Modifier</a>
-          <a href="./delete_service.php">Supprimer</a>
+          <a href="/AP-master/views/admin_panel/add_roles.php">Ajouter</a>
+          <a href="/AP-master/views/admin_panel/edit_roles.php">Modifier</a>
+          <a href="/AP-master/views/admin_panel/edit_roles.php">Supprimer</a>
         </div>
 
       </section>
