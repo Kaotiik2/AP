@@ -14,6 +14,8 @@
 
     <form action="pre_admission_step3.php" method="post" id="pre-admission-form-2">
         <?php
+        require_once "../../lib/relay_post.php";
+        require_once "../../lib/config.php";
 
         use lib\utils;
 

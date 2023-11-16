@@ -16,6 +16,8 @@
         <label for="admission_type">Type d'admission :</label>
         <select name="admission_type" required>
             <?php
+            require_once "../../lib/relay_post.php";
+            require_once "../../lib/config.php";
 
             use lib\db;
 

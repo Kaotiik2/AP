@@ -12,6 +12,8 @@
 
     <form action="/controller/pre_admission.php" method="post" enctype="multipart/form-data">
         <?php
+        require_once "../../lib/relay_post.php";
+        require_once "../../lib/config.php";
 
         use lib\utils;
 

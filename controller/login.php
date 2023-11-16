@@ -40,6 +40,6 @@ else {
         case 2:
             header("Location: /views/medecin.php");
         case 3:
-            header("Location: /views/secretaire.php");
+            header("Location: /views/admission/pre_admission_step0.php");
     };
 }
