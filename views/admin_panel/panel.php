@@ -14,7 +14,7 @@
     <div class="card">
 
       <div class="leftside">
-        <img src="LPFS_logo.png" alt="">
+        <img src="/static/images/LPFS_logo.png" alt="">
       </div>
 
       <section id="infos">
@@ -29,14 +29,14 @@
           <p class="utilisateur">Roles</p>
           <a href="/views/admin_panel/add_roles.php">Ajouter</a>
           <a href="/views/admin_panel/edit_roles.php">Modifier</a>
-          <a href="/views/admin_panel/edit_roles.php">Supprimer</a>
+          <a href="/views/admin_panel/delete_roles.php">Supprimer</a>
         </div>
 
         <div class="maDiv">
           <p class="utilisateur">Services</p>
-          <a href="/views/admin_panel/add_roles.php">Ajouter</a>
-          <a href="/views/admin_panel/edit_roles.php">Modifier</a>
-          <a href="/views/admin_panel/edit_roles.php">Supprimer</a>
+          <a href="/views/admin_panel/add_service.php">Ajouter</a>
+          <a href="/views/admin_panel/edit_service.php">Modifier</a>
+          <a href="/views/admin_panel/delete_service.php">Supprimer</a>
         </div>
 
       </section>
