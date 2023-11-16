@@ -1,7 +1,10 @@
 <?php
 
+require_once "../lib/captcha.php";
+require_once "../model/users.php";
+
 use lib\captcha;
-use model;
+use model\User;
 
 session_start();
 

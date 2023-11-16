@@ -1,9 +1,11 @@
 <?php
 
-use model\pre_admission;
+require_once "../model/users.php";
+require_once "../lib/relay_post.php";
+
 use lib\utils;
 
-$result = pre_admission\new_pre_admission($_POST);
+$result = model\new_pre_admission($_POST);
 
 if (!$result) {
 ?>
@@ -14,7 +16,6 @@ if (!$result) {
     <script defer>
         document.querySelector("form").submit();
     </script>
-
 <?php
 } else {
 ?>

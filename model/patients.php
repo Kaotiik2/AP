@@ -2,6 +2,8 @@
 
 namespace model;
 
+require_once "../lib/config.php";
+
 use lib\db;
 
 class Patient

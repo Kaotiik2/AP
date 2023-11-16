@@ -1,6 +1,8 @@
 <?php
 
-namespace model\pre_admission;
+namespace model;
+
+require_once "../lib/config.php";
 
 use lib\db;
 

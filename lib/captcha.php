@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 namespace lib\captcha;
 
@@ -8,6 +7,7 @@ define("SALT", "1$$0ul4ch4ncl4");
 
 function captcha_gen()
 {
+    session_start();
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $captchaString = '';
 
