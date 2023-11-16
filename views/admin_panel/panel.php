@@ -20,23 +20,23 @@
       <section id="infos">
         <div class="maDiv">
           <p class="utilisateur">Utilisateurs</p>
-          <a href="/views/admin_panel/add_roles.php">Ajouter</a>
-          <a href="/views/admin_panel/edit_roles.php">Modifier</a>
-          <a href="/views/admin_panel/edit_roles.php">Supprimer</a>
+          <a href="/views/admin_panel/add_user.php">Ajouter</a>
+          <a href="/views/admin_panel/edit_user.php">Modifier</a>
+          <a href="/views/admin_panel/delete_user.php">Supprimer</a>
         </div>
 
         <div class="maDiv">
           <p class="utilisateur">Roles</p>
           <a href="/views/admin_panel/add_roles.php">Ajouter</a>
           <a href="/views/admin_panel/edit_roles.php">Modifier</a>
-          <a href="/views/admin_panel/edit_roles.php">Supprimer</a>
+          <a href="/views/admin_panel/delete_roles.php">Supprimer</a>
         </div>
 
         <div class="maDiv">
           <p class="utilisateur">Services</p>
-          <a href="/views/admin_panel/add_roles.php">Ajouter</a>
-          <a href="/views/admin_panel/edit_roles.php">Modifier</a>
-          <a href="/views/admin_panel/edit_roles.php">Supprimer</a>
+          <a href="/views/admin_panel/add_service.php">Ajouter</a>
+          <a href="/views/admin_panel/edit_service.php">Modifier</a>
+          <a href="/views/admin_panel/edit_service.php">Supprimer</a>
         </div>
 
       </section>
