@@ -5,62 +5,9 @@ body {
   box-sizing: border-box;
 }
 
-.mainscreen {
-  min-height: 200vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: #dae6fa;
-}
-
-h1{
-  color: #8eb2ea;
-  margin-top: 30px;
-}
-
-.card {
-  width: 1150px;
-  height: 800px;
-  margin-top: 70px;
-  margin-bottom: 70px;
-  margin-left: 160px;
-  background: white;
-  position: center;
-  align-self: center;
-  top: 50rem;
-  border-radius: 1.5rem;
-  box-shadow: 4px 3px 20px #3535358c;
-  display: flex;
-  flex-direction: row;
-
-}
-
-.leftside {
-  background: #8eb2ea;
-  width: 1150px;
-  height: 800px;
-  align-items: center;
-  justify-content: center;
-  border-top-left-radius: 1.5rem;
-  border-bottom-left-radius: 1.5rem;
-}
-
 img{
   margin-top: 160px;
   margin-left: 45px;
-}
-
-.rightside {
-  background-color: #ffffff;
-  
-  width: 1150px;
-  border-bottom-right-radius: 1.5rem;
-  border-top-right-radius: 1.5rem;
-  padding: 1rem 2rem 3rem 3rem;
-}
-
-.rightside h1{
-  text-align: center;
 }
 
 
@@ -77,29 +24,6 @@ img{
   color: #a6a6a6;
   margin-top: 20px;
 }
-.nom input {
-  outline: none;
-  border: none;
-}
-.nom input::-moz-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.nom input:-ms-input-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.nom input::placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.nom ion-icon {
-  color: #4d4d4d;
-  margin-bottom: -0.2em;
-}
-.nom .show-hide {
-  margin-right: -5em;
-}
 
 /*prenom*/
 
@@ -114,103 +38,10 @@ img{
   color: #a6a6a6;
   margin-top: 20px;
 }
-.prenom input {
-  outline: none;
-  border: none;
-}
-.prenom input::-moz-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.prenom input:-ms-input-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.prenom input::placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.prenom ion-icon {
-  color: #4d4d4d;
-  margin-bottom: -0.2em;
-}
-.prenom .show-hide {
-  margin-right: -5em;
-}
 
 /*Sexe*/
 
-.sexe {
-  background: white;
-  box-shadow: 0 0 2em #e6e9f9;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.1em;
-  border-radius: 20px;
-  color: #a6a6a6;
-  margin-top: 20px;
-}
-.sexe input {
-  outline: none;
-  border: none;
-}
-.sexe input::-moz-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.sexe input:-ms-input-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.sexe input::placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.sexe ion-icon {
-  color: #4d4d4d;
-  margin-bottom: -0.2em;
-}
-.sexe .show-hide {
-  margin-right: -5em;
-}
-
 /*Social*/
-
-.social {
-  background: white;
-  box-shadow: 0 0 2em #e6e9f9;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.1em;
-  border-radius: 20px;
-  color: #a6a6a6;
-  margin-top: 20px;
-}
-.social input {
-  outline: none;
-  border: none;
-}
-.social input::-moz-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.social input:-ms-input-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.social input::placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.social ion-icon {
-  color: #4d4d4d;
-  margin-bottom: -0.2em;
-}
-.social .show-hide {
-  margin-right: -5em;
-}
 
 /*Téléphone*/
 
@@ -225,104 +56,11 @@ img{
   color: #a6a6a6;
   margin-top: 20px;
 }
-.telephone input {
-  outline: none;
-  border: none;
-}
-.telephone input::-moz-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.telephone input:-ms-input-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.telephone input::placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.telephone ion-icon {
-  color: #4d4d4d;
-  margin-bottom: -0.2em;
-}
-.telephone .show-hide {
-  margin-right: -5em;
-}
 
 
 /*médicaux*/
 
-.medicaux {
-  background: white;
-  box-shadow: 0 0 2em #e6e9f9;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.1em;
-  border-radius: 20px;
-  color: #a6a6a6;
-  margin-top: 20px;
-}
-.medicaux input {
-  outline: none;
-  border: none;
-}
-.medicaux input::-moz-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.medicaux input:-ms-input-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.medicaux input::placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.medicaux ion-icon {
-  color: #4d4d4d;
-  margin-bottom: -0.2em;
-}
-.medicaux .show-hide {
-  margin-right: -5em;
-}
-
 /*Probleme*/
-
-.probleme {
-  background: white;
-  box-shadow: 0 0 2em #e6e9f9;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.1em;
-  border-radius: 20px;
-  color: #a6a6a6;
-  margin-top: 20px;
-}
-.probleme input {
-  outline: none;
-  border: none;
-}
-.probleme input::-moz-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.probleme input:-ms-input-placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.probleme input::placeholder {
-  color: #a6a6a6;
-  font-size: 0.9em;
-}
-.probleme ion-icon {
-  color: #4d4d4d;
-  margin-bottom: -0.2em;
-}
-.probleme .show-hide {
-  margin-right: -5em;
-}
 /*email*/
   .email {
       background: white;
@@ -334,63 +72,4 @@ img{
       border-radius: 20px;
       color: #a6a6a6;
       margin-top: 20px;
-    }
-    .email input {
-      outline: none;
-      border: none;
-    }
-    .email input::-moz-placeholder {
-      color: #a6a6a6;
-      font-size: 0.9em;
-    }
-    .email input:-ms-input-placeholder {
-      color: #a6a6a6;
-      font-size: 0.9em;
-    }
-    .email input::placeholder {
-      color: #a6a6a6;
-      font-size: 0.9em;
-    }
-    .email ion-icon {
-      color: #4d4d4d;
-      margin-bottom: -0.2em;
-    }
-
-
-.button {
-      background: #87b0ee;
-      padding: 15px;
-      border: none;
-      border-radius: 50px;
-      color: white;
-      font-weight: 350;
-      font-size: 1.2rem;
-      margin-top: 40px;
-      width: 100%;
-      letter-spacing: .11rem;
-      outline: none;
-    }
-    
-.button:hover {
-      transform: scale(1.05) translateY(-3px);
-      box-shadow: 3px 3px 6px #38373785;
-    }
-    
-.buttonn {
-      background: #87b0ee;
-      padding: 2px;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      font-weight: 3500;
-      font-size: 1.2rem;
-      margin-top: 2px;
-      width: 100%;
-      letter-spacing: .11rem;
-      outline: none;
-    }
-    
-.buttonn:hover {
-      transform: scale(1.05) translateY(-3px);
-      box-shadow: 3px 3px 6px #38373785;
     }

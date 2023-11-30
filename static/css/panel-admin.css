@@ -1,40 +1,8 @@
 /* Style de la boîte de connexion */
-.card {
-    width: 80%;
-    max-width: 550px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    margin: 2% auto;
-    padding: 50px;
-    text-align: center;
-  }
 
   /* Style du logo */
-.leftside img {
-    max-width: 100%;
-  }
   
   /* Style du formulaire de connexion */
-  .login-box {
-    margin-top: 20px;
-  }
-  
-
-.maDiv {
-    margin-left: 50px;
-    max-width: 100px;
-    margin-top: 20px;
-    display: flex; /* Use flexbox to make children appear side by side */
-    flex-direction: column;
-    justify-content: center; /* Create space between the two divs */
-  }
-
-
-#infos{
-    display: flex;
-    justify-content: center;
-}
   a{
     margin-bottom: 10px;
     max-width: 100px;
@@ -60,23 +28,4 @@
     color: #fff;
     background-color: #007bff;
     transition: 0.4s;
-  }
-  
-  .maDiv-right {
-    border-left: 1px solid;
-    padding-left: 60px;
-    margin-left: 70px;
-  }
-
-  .maDiv-right p {
-    text-align: left;
-    padding: 6px;
-    
-  }
-
-  .icon-1{
-    color: #007bff;
-    font-size: 50px;
-    margin-bottom: 20px;
-    padding: 5px;
   }
