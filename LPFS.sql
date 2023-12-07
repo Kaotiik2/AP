@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4deb2+deb11u1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le : jeu. 30 nov. 2023 à 13:07
--- Version du serveur :  10.5.19-MariaDB-0+deb11u2
--- Version de PHP : 7.4.33
+-- Hôte : mysql_db:3306
+-- Généré le : jeu. 07 déc. 2023 à 02:38
+-- Version du serveur : 8.2.0
+-- Version de PHP : 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `civilite` (
-  `id` int(11) NOT NULL  AUTO_INCREMENT,
-  `civilite` varchar(30) NOT NULL
+  `id` int NOT NULL,
+  `civilite` varchar(30) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -48,9 +48,9 @@ INSERT INTO `civilite` (`id`, `civilite`) VALUES
 --
 
 CREATE TABLE `codes_communes` (
-  `code_commune` varchar(5) NOT NULL,
-  `nom_commune` varchar(38) NOT NULL,
-  `code_postal` int(11) NOT NULL
+  `code_commune` varchar(5) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom_commune` varchar(38) COLLATE utf8mb4_general_ci NOT NULL,
+  `code_postal` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -39279,36 +39279,18 @@ INSERT INTO `codes_communes` (`code_commune`, `nom_commune`, `code_postal`) VALU
 -- --------------------------------------------------------
 
 --
--- Structure de la table `disciplines`
---
-
-CREATE TABLE `disciplines` (
-  `id` int(11) NOT NULL  AUTO_INCREMENT,
-  `nom_discipline` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `disciplines`
---
-
-INSERT INTO `disciplines` (`id`, `nom_discipline`) VALUES
-(1, 'Urologie');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `documents`
 --
 
 CREATE TABLE `documents` (
-  `num_secu` varchar(15) NOT NULL,
+  `num_secu` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
   `carte_identite_recto` mediumblob NOT NULL,
   `carte_identite_verso` mediumblob NOT NULL,
   `carte_vitale` mediumblob NOT NULL,
   `carte_mutuelle` mediumblob NOT NULL,
-  `livret_famille` mediumblob DEFAULT NULL,
-  `autorisation_soin` mediumblob DEFAULT NULL,
-  `monoparentalite_juge` mediumblob DEFAULT NULL
+  `livret_famille` mediumblob,
+  `autorisation_soin` mediumblob,
+  `monoparentalite_juge` mediumblob
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -39318,10 +39300,10 @@ CREATE TABLE `documents` (
 --
 
 CREATE TABLE `hospitalisations` (
-  `num_secu` varchar(15) NOT NULL,
+  `num_secu` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
   `date_hospitalisation` date NOT NULL,
-  `heure_intervention` varchar(5) DEFAULT NULL,
-  `type_hospitalisation` int(11) NOT NULL
+  `heure_intervention` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `type_hospitalisation` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -39331,11 +39313,20 @@ CREATE TABLE `hospitalisations` (
 --
 
 CREATE TABLE `medecins` (
-  `nom` varchar(100) NOT NULL,
-  `prenom` varchar(100) NOT NULL,
-  `discipline` int(11) NOT NULL,
-  `id_medecin` int(11) NOT NULL
+  `nom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `prenom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `discipline` int NOT NULL,
+  `id_medecin` int NOT NULL,
+  `nom_service` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `medecins`
+--
+
+INSERT INTO `medecins` (`nom`, `prenom`, `discipline`, `id_medecin`, `nom_service`) VALUES
+('Test', 'Lol', 0, 2, 'Radiologie'),
+('Dubrieux', 'Joshua', 0, 3, 'Gynécologie et obstétrique');
 
 -- --------------------------------------------------------
 
@@ -39344,23 +39335,23 @@ CREATE TABLE `medecins` (
 --
 
 CREATE TABLE `patients` (
-  `num_secu` varchar(15) NOT NULL,
-  `organisme_secu` varchar(100) NOT NULL,
+  `num_secu` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+  `organisme_secu` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `assurance` tinyint(1) NOT NULL,
   `ald` tinyint(1) NOT NULL,
-  `nom_mutuelle` varchar(100) NOT NULL,
-  `num_adherent_mutuelle` varchar(100) NOT NULL,
-  `type_chambre` int(11) NOT NULL,
-  `civilite` int(11) NOT NULL,
-  `nom_naissance` varchar(100) NOT NULL,
-  `nom_epouse` varchar(100) DEFAULT NULL,
-  `prenom` varchar(100) NOT NULL,
+  `nom_mutuelle` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `num_adherent_mutuelle` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `type_chambre` int NOT NULL,
+  `civilite` int NOT NULL,
+  `nom_naissance` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom_epouse` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `prenom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `date_naissance` date NOT NULL,
-  `adresse` varchar(200) NOT NULL,
-  `code_postal` varchar(5) NOT NULL,
-  `ville` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `telephone` varchar(20) NOT NULL
+  `adresse` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `code_postal` varchar(5) COLLATE utf8mb4_general_ci NOT NULL,
+  `ville` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `telephone` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -39370,11 +39361,11 @@ CREATE TABLE `patients` (
 --
 
 CREATE TABLE `personnes_a_prevenir` (
-  `nom` varchar(100) NOT NULL,
-  `prenom` varchar(100) NOT NULL,
-  `telephone` varchar(20) NOT NULL,
-  `adresse` varchar(200) NOT NULL,
-  `num_secu` varchar(15) NOT NULL
+  `nom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `prenom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `telephone` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `adresse` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `num_secu` varchar(15) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -39384,11 +39375,11 @@ CREATE TABLE `personnes_a_prevenir` (
 --
 
 CREATE TABLE `personnes_de_confiance` (
-  `nom` varchar(100) NOT NULL,
-  `prenom` varchar(100) NOT NULL,
-  `telephone` varchar(20) NOT NULL,
-  `adresse` varchar(200) NOT NULL,
-  `num_secu` varchar(15) NOT NULL
+  `nom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `prenom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `telephone` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `adresse` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `num_secu` varchar(15) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -39398,8 +39389,8 @@ CREATE TABLE `personnes_de_confiance` (
 --
 
 CREATE TABLE `postes` (
-  `id` int(11) NOT NULL,
-  `intitule_poste` varchar(50) NOT NULL
+  `id` int NOT NULL,
+  `intitule_poste` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -39409,7 +39400,30 @@ CREATE TABLE `postes` (
 INSERT INTO `postes` (`id`, `intitule_poste`) VALUES
 (2, 'Médecin'),
 (3, 'Secrétariat'),
-(4, 'Chirurgien');
+(4, 'Chirurgien'),
+(0, 'Administrateur');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `services`
+--
+
+CREATE TABLE `services` (
+  `nom_service` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `services`
+--
+
+INSERT INTO `services` (`nom_service`) VALUES
+('Cardiologie'),
+('Chirurgie orthopédique'),
+('Consultation générale'),
+('Gynécologie et obstétrique'),
+('Laboratoire médical'),
+('Radiologie');
 
 -- --------------------------------------------------------
 
@@ -39418,8 +39432,8 @@ INSERT INTO `postes` (`id`, `intitule_poste`) VALUES
 --
 
 CREATE TABLE `type_chambre` (
-  `id` int(11) NOT NULL,
-  `type` varchar(100) NOT NULL
+  `id` int NOT NULL,
+  `type` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -39438,8 +39452,8 @@ INSERT INTO `type_chambre` (`id`, `type`) VALUES
 --
 
 CREATE TABLE `type_hospitalisation` (
-  `id` int(11) NOT NULL,
-  `type` varchar(45) NOT NULL
+  `id` int NOT NULL,
+  `type` varchar(45) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -39457,36 +39471,27 @@ INSERT INTO `type_hospitalisation` (`id`, `type`) VALUES
 --
 
 CREATE TABLE `utilisateurs` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(50) NOT NULL,
-  `prenom` varchar(50) NOT NULL,
-  `mail` varchar(50) NOT NULL,
+  `id` int NOT NULL,
+  `nom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `prenom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `mail` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `date_naissance` date NOT NULL,
-  `telephone` varchar(20) NOT NULL,
-  `id_poste` int(11) NOT NULL,
-  `mot_de_passe` varchar(255) NOT NULL,
+  `telephone` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_poste` int NOT NULL,
+  `mot_de_passe` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `premiere_connexion` tinyint(1) NOT NULL,
-  `date_mdp` int(11) DEFAULT NULL,
-  `password_salt` varchar(255) NOT NULL
+  `date_mdp` int DEFAULT NULL,
+  `password_salt` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom_service` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `utilisateurs`
 --
 
-INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `mail`, `date_naissance`, `telephone`, `id_poste`, `mot_de_passe`, `premiere_connexion`, `date_mdp`, `password_salt`) VALUES
-(17, 'DUTILLEUL', 'Quentin', 'dutilleulquentin@gmail.com', '2001-07-31', '0627038806', 3, '$argon2id$v=19$m=65536,t=4,p=1$bmZ2TmlqWUZuL2poMGFNSA$oeM5XG6ZUAx1g5DWFtPcaqqQ6PWKOS+/QEAe5uEdw1w', 0, 0, 'joxjAYInpNav3bav8b5XlNyYsiXQUHn2clS9pP5VdnET7MncdTbdpyEv9SCRlt9uNlkh2DKAxuR1bIabPq4usKCaPP4ZA8LtSBqxsxR3l7N1OuFUhOzBxHQ9muNmococwWEOW17onm2ClGWK5eEBzNF7Q6fKk7wOj3iwvZcMZpGB4nGUVm9ZdH2ZYkGbePt7vlxkgPWYXr4mqHFdKs1e4dNECf1TEsoHK6BTD8GUfaTYI25KgQ80xJNN1uaqMMK');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `__diesel_schema_migrations`
---
-
-CREATE TABLE `__diesel_schema_migrations` (
-  `version` varchar(50) NOT NULL,
-  `run_on` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `mail`, `date_naissance`, `telephone`, `id_poste`, `mot_de_passe`, `premiere_connexion`, `date_mdp`, `password_salt`, `nom_service`) VALUES
+(20, 'DUTILLEUL', 'Quentin', 'test@test.fr', '2001-07-31', '0123456789', 3, '$argon2id$v=19$m=65536,t=4,p=1$MkRGTUxXdjA5dC4zTjV6bA$SY+0+UskqElZaoWzk88yKDfoANIkKrDXD0Tlqedx4cw', 1, 1701900634, 'KQBp8gLJFjtJKUMSpjYxyIYSqKpeWxGAMbSSqBel9lHfm3sOHFAGVECAmzOZQgLogv5aAOnyvq1gbY0EdF8ovThVd2qIqFDZUv6R6BwEJ5jW2OZ8m19PoxnhjaJ6IF2WvaxUgTbpMc8mr5uBRlxW57wIi0wOopCXlXs2NcAKcqp2rwcNZy548vo5i4vzsGT4BalsBCJpQ01wm9HksKhUD2IBz0iSPmlc2YIaDsBSfEJH31noRNTtE1JoqTYtc4v', 'Gynécologie et obstétrique'),
+(21, 'Dubrieux', 'Joshua', 'joshua@test.fr', '2000-10-10', '0123456789', 0, '$argon2id$v=19$m=65536,t=4,p=1$UEc0U0NjaGtzRllMMng5NA$CT5h8njYEBDGso6YoljD0wj1VAGD/4fiQgSLSucFt2U', 1, 1701902547, 'CjlJPk0AEQjTOMHC2eON1HI9BOhTHx1LSFcuFOhS5EkiBe3uqGgGhRy1Re2REJBP0cIFQ2R8EtuCUNk2JVLb8I6Dm7QozJjGaYIanZs1MzKETBBPlwNjteIBCjXwTj4qI66YEQYdkizI9B2PnQrG935UQt0521GqYUkZaYMXbkCbMv46T69qosigqvnXNUVq7ARDx8D0AJrxaENSkXZKxXOL3sLCss56SXnBtZXbNjpVlpVeP1D2c1IOYUGuzSG', 'Cardiologie');
 
 --
 -- Index pour les tables déchargées
@@ -39499,158 +39504,44 @@ ALTER TABLE `civilite`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `disciplines`
---
-ALTER TABLE `disciplines`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `documents`
---
-ALTER TABLE `documents`
-  ADD KEY `FK_1` (`num_secu`);
-
---
--- Index pour la table `hospitalisations`
---
-ALTER TABLE `hospitalisations`
-  ADD KEY `FK_1` (`num_secu`),
-  ADD KEY `FK_2` (`type_hospitalisation`);
-
---
 -- Index pour la table `medecins`
 --
 ALTER TABLE `medecins`
-  ADD KEY `FK_1` (`discipline`),
-  ADD KEY `FK_2` (`id_medecin`);
+  ADD PRIMARY KEY (`id_medecin`);
 
 --
--- Index pour la table `patients`
+-- Index pour la table `services`
 --
-ALTER TABLE `patients`
-  ADD PRIMARY KEY (`num_secu`),
-  ADD KEY `FK_1` (`type_chambre`),
-  ADD KEY `FK_2` (`civilite`);
-
---
--- Index pour la table `personnes_a_prevenir`
---
-ALTER TABLE `personnes_a_prevenir`
-  ADD KEY `FK_1` (`num_secu`);
-
---
--- Index pour la table `personnes_de_confiance`
---
-ALTER TABLE `personnes_de_confiance`
-  ADD KEY `FK_1` (`num_secu`);
-
---
--- Index pour la table `postes`
---
-ALTER TABLE `postes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `type_chambre`
---
-ALTER TABLE `type_chambre`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `type_hospitalisation`
---
-ALTER TABLE `type_hospitalisation`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`nom_service`);
 
 --
 -- Index pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_1` (`id_poste`);
-
---
--- Index pour la table `__diesel_schema_migrations`
---
-ALTER TABLE `__diesel_schema_migrations`
-  ADD PRIMARY KEY (`version`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT pour la table `disciplines`
+-- AUTO_INCREMENT pour la table `civilite`
 --
-ALTER TABLE `disciplines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `civilite`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `postes`
+-- AUTO_INCREMENT pour la table `medecins`
 --
-ALTER TABLE `postes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT pour la table `type_hospitalisation`
---
-ALTER TABLE `type_hospitalisation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `medecins`
+  MODIFY `id_medecin` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `documents`
---
-ALTER TABLE `documents`
-  ADD CONSTRAINT `FK_9` FOREIGN KEY (`num_secu`) REFERENCES `patients` (`num_secu`);
-
---
--- Contraintes pour la table `hospitalisations`
---
-ALTER TABLE `hospitalisations`
-  ADD CONSTRAINT `FK_11` FOREIGN KEY (`type_hospitalisation`) REFERENCES `type_hospitalisation` (`id`),
-  ADD CONSTRAINT `FK_5` FOREIGN KEY (`num_secu`) REFERENCES `patients` (`num_secu`);
-
---
--- Contraintes pour la table `medecins`
---
-ALTER TABLE `medecins`
-  ADD CONSTRAINT `FK_7` FOREIGN KEY (`discipline`) REFERENCES `disciplines` (`id`),
-  ADD CONSTRAINT `FK_9_1` FOREIGN KEY (`id_medecin`) REFERENCES `utilisateurs` (`id`);
-
---
--- Contraintes pour la table `patients`
---
-ALTER TABLE `patients`
-  ADD CONSTRAINT `FK_1` FOREIGN KEY (`type_chambre`) REFERENCES `type_chambre` (`id`),
-  ADD CONSTRAINT `FK_2` FOREIGN KEY (`civilite`) REFERENCES `civilite` (`id`);
-
---
--- Contraintes pour la table `personnes_a_prevenir`
---
-ALTER TABLE `personnes_a_prevenir`
-  ADD CONSTRAINT `FK_3` FOREIGN KEY (`num_secu`) REFERENCES `patients` (`num_secu`);
-
---
--- Contraintes pour la table `personnes_de_confiance`
---
-ALTER TABLE `personnes_de_confiance`
-  ADD CONSTRAINT `FK_4` FOREIGN KEY (`num_secu`) REFERENCES `patients` (`num_secu`);
-
---
--- Contraintes pour la table `utilisateurs`
---
-ALTER TABLE `utilisateurs`
-  ADD CONSTRAINT `FK_10` FOREIGN KEY (`id_poste`) REFERENCES `postes` (`id`);
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
