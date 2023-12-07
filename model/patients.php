@@ -2,7 +2,7 @@
 
 namespace model;
 
-require_once "lib/config.php";
+require_once __DIR__ . "/../lib/config.php";
 
 use lib\db;
 
@@ -26,7 +26,7 @@ class Patient
     public string $email;
     public string $tel;
 
-    public static function from_database(string $healthcare_serial): Patient|mixed
+    public static function from_database(string $healthcare_serial): Patient|int
     {
         $db = db\get_db();
 

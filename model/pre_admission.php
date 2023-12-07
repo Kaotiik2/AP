@@ -2,19 +2,23 @@
 
 namespace model;
 
-require_once "lib/config.php";
+require_once __DIR__ . "/../lib/config.php";
+require_once "../model/personnes.php";
 
 use lib\db;
+use model\Personne;
+use model\TypePersonne;
 
-// Returns true if insert_patient got successful, the error string else
+// Returns false if insert_patient got successful, the error string else
 // TODO: Doesn't work lmao
-function new_pre_admission($values): true|string
+// TODO: Do Model for Documents and Patients
+function new_pre_admission($values): false|string
 {
     $db = db\get_db();
 
     extract($values);
 
-    // Insertion dans `patients`
+    // `patients` Insertion
     $req = "INSERT INTO patients(num_secu, organisme_secu, assurance, ald, nom_mutuelle, num_adherent_mutuelle, type_chambre, civilite, nom_naissance, nom_epouse, prenom, date_naissance, adresse, code_postal, ville, email, telephone)
         VALUES(
             :num_secu, :organisme_secu, :assurance, 
@@ -46,7 +50,13 @@ function new_pre_admission($values): true|string
 
     $result = $stmt->execute();
 
-    // Insertion dans `hospitalisations`
+    if (!$result) {
+        return $db->errorCode();
+    }
+
+    // End `patients` insertion
+
+    // `hospitalisations` Insertion
     $req = "INSERT INTO hospitalisations(num_secu, date_hospitalisation, heure_intervention, type_hospitalisation)
         VALUES(
             :num_secu,
@@ -62,9 +72,14 @@ function new_pre_admission($values): true|string
     $stmt->bindValue(":admission_type", $admission_type);
 
     $result = $stmt->execute();
-    $stmt = null;
 
-    // Insertion dans `documents`
+    if (!$result) {
+        return $db->errorCode();
+    }
+
+    // End `hospitalisations` insertion
+
+    // `documents` Insertion
     if ($_POST["mineur"] == "on") {
         if ($_POST["parents_divorces"] == "on") {
             $req = "INSERT INTO documents(
@@ -148,5 +163,16 @@ function new_pre_admission($values): true|string
         return $db->errorCode();
     }
 
-    return $result;
+    // End `documents` Insertion
+
+	$personne_de_confiance = Personne::from_form($_POST, TypePersonne::PersonneDeConfiance);
+	if (!$personne_de_confiance->register())
+		return "Can't register trusted person";
+
+
+	$personne_a_prevenir = Personne::from_form($_POST, TypePersonne::PersonneAPrevenir);
+	if (!$personne_a_prevenir->register())
+		return "Can't register prevent person";
+
+    return false;
 }

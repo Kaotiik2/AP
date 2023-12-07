@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require_once "model/users.php";
-require_once "lib/captcha.php";
-&
+require_once "../model/users.php";
+require_once "../lib/captcha.php";
+
 use model\User;
 use lib\captcha;
 
@@ -28,18 +28,21 @@ if (!$user) {
 // Connection didn't fail, the model returned a valid User object
 else {
     $_SESSION["user"] = serialize($user);
+	var_dump($user);
+	//exit;
 
     if (!$user->has_connected_before || $user->must_change_password) {
         header("Location: /views/password_reset.php");
         exit;
     }
 
-    switch ($user->id_role) {
-        case 1:
-            header("Location: /views/admin.php");
-        case 2:
-            header("Location: /views/medecin.php");
-        case 3:
-            header("Location: /views/admission/pre_admission_step0.php");
-    };
+	$redirect_route = match ($user->id_role) {
+		0 => "/views/admin.php",
+		2 => "/views/medecin.php",
+		3 => "/views/admission/pre_admission_step0.php",
+		default => "/views/login.php?error=1"
+	};
+
+    header("Location: $redirect_route");
+	exit;
 }

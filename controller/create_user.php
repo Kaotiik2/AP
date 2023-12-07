@@ -1,15 +1,15 @@
 <?php
-require_once "model/users.php";
+require_once "../model/users.php";
 
 use model\User;
 
 extract($_POST);
 
-$result = User::register($name, $surname, $mail, $birth_date, $telephone, 3, $password, 1);
+$result = User::register($name, $surname, $mail, $birth_date, $telephone, intval($role), $password, $service);
 
-if (!$result)
-    header("Location: /views/create_account.php?error=1");
-else
-    header("Location: /views/create_account.php?error=0");
+if (is_string($result))
+    header("Location: /views/create_account.php?error=".urlencode($result));
+else if ($result instanceof User)
+    header("Location: /views/create_account.php?success=true");
 
 exit;

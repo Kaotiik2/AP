@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `civilite` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL  AUTO_INCREMENT,
   `civilite` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39283,7 +39283,7 @@ INSERT INTO `codes_communes` (`code_commune`, `nom_commune`, `code_postal`) VALU
 --
 
 CREATE TABLE `disciplines` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL  AUTO_INCREMENT,
   `nom_discipline` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

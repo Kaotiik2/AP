@@ -2,7 +2,7 @@
 
 namespace model;
 
-require_once "lib/config.php";
+require_once __DIR__ . "/../lib/config.php";
 
 use lib\db;
 
@@ -21,9 +21,9 @@ class User
     public string $telephone;
     public string $name;
     public string $surname;
-    public int $service_id;
+    public string $nom_service;
 
-    public function __construct(int $id, string $name, string $surname, string $mail, string $birth, string $telephone, int $id_role, string $password, bool $first_connection, bool $mcp, string $salt, int $service_id)
+    public function __construct(int $id, string $name, string $surname, string $mail, string $birth, string $telephone, int $id_role, string $password, bool $first_connection, bool $mcp, string $salt, string $nom_service)
     {
         $this->id_user = $id;
         $this->name = $name;
@@ -36,13 +36,13 @@ class User
         $this->has_connected_before = $first_connection;
         $this->must_change_password = $mcp;
         $this->password_salt = $salt;
-        $this->service_id = $service_id;
+        $this->nom_service = $nom_service;
     }
 
     protected static function from_row(array $row): User
     {
         extract($row);
-        return new User($id, $nom, $prenom, $mail, $date_naissance, $telephone, $id_poste, $mot_de_passe, $premiere_connexion, diff_in_days($date_mdp) >= PASSWORD_LIFE, $password_salt, $service_id);
+        return new User($id, $nom, $prenom, $mail, $date_naissance, $telephone, $id_poste, $mot_de_passe, $premiere_connexion, diff_in_days($date_mdp) >= PASSWORD_LIFE, $password_salt, $nom_service);
     }
 
     public static function get_all(): array|false
@@ -83,13 +83,23 @@ class User
             return false;
     }
 
+	public static function from_session() : ?User {
+		session_start();
+		if (!isset($_SESSION["user"]))
+			return null;
+
+		return unserialize($_SESSION["user"]);
+	}
+
+	/// Returns the user associated with the mail passed as parameter
+	/// Returns 0 if no user found, 1 if database error
     private static function user_by_mail(string $mail): User|int
     {
         $db = db\get_db();
 
         $req = "SELECT * FROM `utilisateurs` 
             WHERE mail = :mail
-    ";
+    	";
 
         $stmt = $db->prepare($req);
         $stmt->bindValue(":mail", $mail);
@@ -104,21 +114,23 @@ class User
         }
         // No user found with these credentials
         else if ($len == 0) {
-            echo "C'est zéro";
             return 0;
         }
         // Database error
         else {
-            var_dump($response);
             return 1;
         }
     }
 
     /// Registers a new user in the database
-    public static function register(string $name, string $surname, string $mail, string $birth_date, $telephone, int $id_poste, string $password, int $service_id): User|false
+    public static function register(string $name, string $surname, string $mail, string $birth_date, $telephone, int $id_poste, string $password, string $nom_service): User|string
     {
+		if (User::user_by_mail($mail) == 1) {
+			return "Mail already used";
+		}
+
         $db = db\get_db();
-        $req = "INSERT INTO utilisateurs(nom, prenom, mail, date_naissance, telephone, id_poste, mot_de_passe, premiere_connexion, date_mdp, password_salt, service_id)
+        $req = "INSERT INTO utilisateurs(nom, prenom, mail, date_naissance, telephone, id_poste, mot_de_passe, premiere_connexion, date_mdp, password_salt, nom_service)
         VALUES(
             :nom,
             :prenom,
@@ -130,7 +142,7 @@ class User
             '0',
             '0',
             :generated_salt,
-            :service_id
+            :nom_service
         )";
 
         $salt = generate_salt();
@@ -145,12 +157,12 @@ class User
         $stmt->bindValue(":id_poste", $id_poste);
         $stmt->bindParam(":hashed_password", $hashed_password);
         $stmt->bindParam(":generated_salt", $salt);
-        $stmt->bindParam(":service_id", $service_id);
+        $stmt->bindParam(":nom_service", $nom_service);
 
         $result = $stmt->execute();
 
         if (!$result) {
-            return false;
+			return $stmt->errorCode();
         }
         return User::from_database($mail);
     }
@@ -161,11 +173,35 @@ class User
         return password_verify($password . $this->password_salt, $this->password);
     }
 
-    static function users_from_service(int $service_id): array|false
+	public function change_password(string $new_password): bool
+	{
+		$db = db\get_db();
+		$new_hashed = password_hash($new_password . $this->password_salt, PASSWORD_ARGON2ID);
+		$datenow = time();
+
+		$req = "
+        UPDATE utilisateurs
+            SET mot_de_passe = :new_hashed,
+            premiere_connexion = '1',
+            date_mdp = :date
+            WHERE id = :id
+        ";
+
+		$datenow = time();
+		$stmt = $db->prepare($req);
+		$stmt->bindValue(":new_hashed", $new_hashed);
+		$stmt->bindValue(":date", $datenow);
+		$stmt->bindValue(":id", $this->id_user);
+
+		return $stmt->execute();
+	}
+
+
+    static function users_from_service(string $service_id): array|false
     {
         $db = db\get_db();
 
-        $req = "SELECT * FROM utilisateurs WHERE service_id = :service_id";
+        $req = "SELECT * FROM utilisateurs WHERE nom_service = :service_id";
         $stmt = $db->prepare($req);
         $stmt->bindParam(":service_id", $service_id);
 
@@ -181,6 +217,7 @@ class User
             extract($row);
             $returned[] = User::from_row($row);
         }
+		return $returned;
     }
 }
 
@@ -205,27 +242,6 @@ function get_user_password(int $user_id): string|null
     if (!$result) return null;
 
     else return $stmt->fetch()["mot_de_passe"];
-}
-
-function update_user_password(int $user_id, string $new_password): bool
-{
-    $db = db\get_db();
-
-    $req = "
-        UPDATE utilisateurs
-            SET mot_de_passe = :new_password,
-            premiere_connexion = '1',
-            date_mdp = :date
-            WHERE id = :id
-        ";
-
-    $datenow = time();
-    $stmt = $db->prepare($req);
-    $stmt->bindValue(":new_password", $new_password);
-    $stmt->bindValue(":date", $datenow);
-    $stmt->bindValue(":id", $user_id);
-
-    return $stmt->execute();
 }
 
 function generate_salt(int $len = 255): string

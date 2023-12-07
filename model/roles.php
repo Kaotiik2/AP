@@ -2,7 +2,7 @@
 
 namespace model;
 
-require_once("/lib/config.php");
+require_once __DIR__ . "/../lib/config.php";
 
 use lib\db;
 
@@ -30,5 +30,6 @@ class Role
         foreach ($stmt->fetchAll() as $row) {
             $returned[] = new Role($row["id"], $row["intitule_poste"]);
         }
+		return $returned;
     }
 }

@@ -1,3 +1,10 @@
+<?php
+require_once "../../model/security.php";
+global $SECURITY_ADMIN_LEVEL;
+
+$SECURITY_ADMIN_LEVEL->authorize();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +25,7 @@
         </thead>
         <tbody>
             <?php
-            require_once "../../model/users.php";
+            require_once "model/users.php";
 
             use model\User;
 

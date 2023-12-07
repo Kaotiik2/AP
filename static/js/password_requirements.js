@@ -1,6 +1,6 @@
 let password_input = document.querySelector("input[name=new_password]");
-let password_repeat = document.querySelector("input[name=password_repeat");
-let submit_button = document.querySelector("#password-reset").querySelector("#submit-button");
+let password_repeat = document.querySelector("input[name=password_repeat]");
+let submit_button = document.querySelector("input[name=submit]");
 
 let requirements = {
     "size": false,
@@ -28,13 +28,11 @@ password_input.addEventListener("keyup", (e) => {
 
 const control_submit_button_state = (e) => {
     if (password_input.value === password_repeat.value && is_password_valid(requirements)) {
-        submit_button.classList.add("submit-enabled");
-        submit_button.classList.remove("submit-disabled");
+        submit_button.classList.remove("cursor-not-allowed");
         submit_button.disabled = false;
     }
     else {
-        submit_button.classList.add("submit-disabled");
-        submit_button.classList.remove("submit-enabled");
+        submit_button.classList.add("cursor-not-allowed");
         submit_button.disabled = true;
     }
 
@@ -53,11 +51,11 @@ function update_validity_indicators(requirements) {
 
 function set_class_state(obj, state) {
     if (state) {
-        obj.classList.add("valid");
-        obj.classList.remove("invalid");
+        obj.classList.add("text-green-500");
+        obj.classList.remove("text-red-500");
     } else {
-        obj.classList.add("invalid");
-        obj.classList.remove("valid");
+        obj.classList.add("text-red-500");
+        obj.classList.remove("text-green-500");
     }
 }
 

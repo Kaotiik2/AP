@@ -1,7 +1,7 @@
 <?php
 
-require_once "lib/captcha.php";
-require_once "model/users.php";
+require_once "../lib/captcha.php";
+require_once "../model/users.php";
 
 use lib\captcha;
 use model\User;
@@ -9,7 +9,7 @@ use model\User;
 session_start();
 
 $user = unserialize($_SESSION["user"]);
-var_dump($user);
+//var_dump($user);
 
 // Captcha fail
 if (!captcha\captcha_verify($_POST["captcha_answer"])) {
@@ -25,8 +25,12 @@ else {
             header("Location: /views/password_reset.php?error=10");
         }
 
-        model\update_user_password($user->$user_id, $new_password);
+        $user->change_password($new_password);
         session_destroy();
         header("Location: login.php");
     }
+	else {
+		header("Location: /views/password_reset.php?submit=".(isset($submit) == true ? "true" : "false")."&equals=" . ($new_password == $password_repeat));
+	}
 }
+exit;
