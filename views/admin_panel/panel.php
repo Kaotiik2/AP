@@ -26,7 +26,6 @@ $SECURITY_ADMIN_LEVEL->authorize();
 
             <section id="infos" class="mt-6 space-y-4">
 
-            <img src="/static/images/LPFS_logo.png" alt="">
 
                 <div class="maDiv">
                     <p class="utilisateur">Médecins</p>
