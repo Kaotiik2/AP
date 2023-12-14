@@ -127,7 +127,9 @@ function new_pre_admission($values): false|string
         $stmt->bindValue(":carte_identite_verso", file_get_contents($filename = $_FILES["ci_verso"]["tmp_name"]));
         $stmt->bindValue(":carte_vitale", file_get_contents($filename = $_FILES["carte_vitale"]["tmp_name"]));
         $stmt->bindValue(":carte_mutuelle", file_get_contents($filename = $_FILES["carte_mutuelle"]["tmp_name"]));
-        $stmt->bindValue(":livret_famille", file_get_contents($filename = $_FILES["livret_famille"]["tmp_name"]));
+        if ($_POST["mineur"] == "on")
+            $stmt->bindValue(":livret_famille", file_get_contents($filename = $_FILES["livret_famille"]["tmp_name"]));
+
         $stmt->bindValue(":autorisation_soin", file_get_contents($filename = $_FILES["autorisation_soin"]["tmp_name"]));
 
         if ($_POST["parents_divorces"] == "on") {
@@ -150,8 +152,8 @@ function new_pre_admission($values): false|string
 
         $stmt = $db->prepare($req);
         $stmt->bindValue(":num_secu", $num_secu);
-        $stmt->bindValue(":carte_identite_recto", file_get_contents($filename = $_FILES["carte_identite_recto"]["tmp_name"]));
-        $stmt->bindValue(":carte_identite_verso", file_get_contents($filename = $_FILES["carte_identite_verso"]["tmp_name"]));
+        $stmt->bindValue(":carte_identite_recto", file_get_contents($filename = $_FILES["ci_recto"]["tmp_name"]));
+        $stmt->bindValue(":carte_identite_verso", file_get_contents($filename = $_FILES["ci_verso"]["tmp_name"]));
         $stmt->bindValue(":carte_vitale", file_get_contents($filename = $_FILES["carte_vitale"]["tmp_name"]));
         $stmt->bindValue(":carte_mutuelle", file_get_contents($filename = $_FILES["carte_mutuelle"]["tmp_name"]));
         $stmt->bindValue(":livret_famille", file_get_contents($filename = $_FILES["livret_famille"]["tmp_name"]));
@@ -165,14 +167,14 @@ function new_pre_admission($values): false|string
 
     // End `documents` Insertion
 
-	$personne_de_confiance = Personne::from_form($_POST, TypePersonne::PersonneDeConfiance);
-	if (!$personne_de_confiance->register())
-		return "Can't register trusted person";
+    $personne_de_confiance = Personne::from_form($_POST, TypePersonne::PersonneDeConfiance);
+    if (!$personne_de_confiance->register())
+        return "Can't register trusted person";
 
 
-	$personne_a_prevenir = Personne::from_form($_POST, TypePersonne::PersonneAPrevenir);
-	if (!$personne_a_prevenir->register())
-		return "Can't register prevent person";
+    $personne_a_prevenir = Personne::from_form($_POST, TypePersonne::PersonneAPrevenir);
+    if (!$personne_a_prevenir->register())
+        return "Can't register prevent person";
 
     return false;
 }
