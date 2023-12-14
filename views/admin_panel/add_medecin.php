@@ -54,6 +54,7 @@ $SECURITY_ADMIN_LEVEL->authorize();
 
 			<div class="flex justify-end">
 				<button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Ajouter</button>
+				<a href="/views/admin_panel/panel.php" class="ml-30">Retour</a>
 			</div>
 		</form>
 	</div>
