@@ -24,4 +24,12 @@ body {
   margin-bottom: 20px;
 }
 
+
+
 /* Style du bouton de connexion */
+#boutton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
