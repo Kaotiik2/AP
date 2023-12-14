@@ -1,7 +1,7 @@
 <?php
 
-require_once "model/users.php";
-require_once "lib/relay_post.php";
+require_once "../model/users.php";
+require_once "../lib/relay_post.php";
 
 use lib\utils;
 
