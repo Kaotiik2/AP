@@ -41,7 +41,7 @@
                 <img src="/gen_captcha.php" class="mb-1 m-auto"/> <br>
                 <label for="captcha_answer" class="hidden"></label>
                 <input type="text" name="captcha_answer" class="input_1 border rounded p-2 mb-4 w-full"/> <br>
-                <button type="submit" class="button bg-blue-500 text-white py-2 px-4 rounded " id="boutton">Connexion</button>
+                <button type="submit" class="button bg-blue-500 text-white py-2 px-4 rounded ">Connexion</button>
             </div>
         </form>
     </div>
