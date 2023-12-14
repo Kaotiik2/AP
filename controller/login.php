@@ -28,21 +28,21 @@ if (!$user) {
 // Connection didn't fail, the model returned a valid User object
 else {
     $_SESSION["user"] = serialize($user);
-	var_dump($user);
-	//exit;
+    var_dump($user);
+    //exit;
 
     if (!$user->has_connected_before || $user->must_change_password) {
         header("Location: /views/password_reset.php");
         exit;
     }
 
-	$redirect_route = match ($user->id_role) {
-		0 => "/views/admin.php",
-		2 => "/views/medecin.php",
-		3 => "/views/admission/pre_admission_step0.php",
-		default => "/views/login.php?error=1"
-	};
+    $redirect_route = match ($user->id_role) {
+        0 => "/views/admin.php",
+        2 => "/views/medecin.php",
+        3 => "/views/admission/pre_admission_step0.php",
+        default => "/views/login.php?error=1"
+    };
 
     header("Location: $redirect_route");
-	exit;
+    exit;
 }
