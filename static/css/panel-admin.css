@@ -1,9 +1,43 @@
-/* Style de la boîte de connexion */
-
-  /* Style du logo */
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajustez la hauteur de la section selon vos préférences */
+  }
   
-  /* Style du formulaire de connexion */
-  a{
+  .card {
+    width: 400px; /* Ajustez la largeur de la carte selon vos besoins */
+    background-color: #fff; /* Couleur de fond de la carte */
+    border-radius: 10px; /* Bord arrondi de la carte */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    overflow: hidden; /* Empêche le débordement des éléments enfants */
+  }
+  
+  .top img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .bottom {
+    padding: 20px; /* Ajustez la marge intérieure de la partie inférieure de la carte */
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .maDiv {
+    margin-top: 20px;
+    margin-bottom: 30px; /* Ajustez la marge entre chaque section selon vos préférences */
+  }
+  
+  .utilisateur {
+    font-weight: bold;
+    font-size: 18px; /* Ajustez la taille de la police selon vos besoins */
+    margin-bottom: 8px;
+  }
+  
+  a {
+    margin-top: 10px;
     margin-bottom: 10px;
     max-width: 100px;
     font-weight: bold;
@@ -29,3 +63,4 @@
     background-color: #007bff;
     transition: 0.4s;
   }
+  
