@@ -65,7 +65,7 @@ $SECURITY_ADMIN_LEVEL->authorize();
                 <img src="/static/images/LPFS_logo.png" alt="">
             </div>
 
-            <p class="titre_form">Formulaire d'ajout de Role</p>
+            <h3 class="titre_form">Formulaire d'ajout de Role</h3>
             <form method="post" enctype="multipart/form-data" class="formulaire">
                 <label for="nom">Nom du Role:</label>
                 <input type="text" id="intitule_poste" name="intitule_poste" required><br><br>
