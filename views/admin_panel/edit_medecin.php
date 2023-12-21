@@ -14,6 +14,8 @@ $SECURITY_ADMIN_LEVEL->authorize();
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 	<title>Modifier un médecin</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body class="bg-gray-100 font-sans">
@@ -64,8 +66,12 @@ $SECURITY_ADMIN_LEVEL->authorize();
 			?>
 			</tbody>
 		</table>
+		<a href="/views/admin_panel/panel.php" ><i class="fa-solid fa-door-open" id="retour"></i></a>
+
 	</div>
+	
 </div>
+
 </body>
 
 </html>

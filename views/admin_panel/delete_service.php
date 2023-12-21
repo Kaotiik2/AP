@@ -94,6 +94,7 @@ $connexion->close();
 
 <a href="/views/admin_panel/panel.php" ><i class="fa-solid fa-door-open" id="retour"></i></a>
 
+
 </div>
 
 </body>

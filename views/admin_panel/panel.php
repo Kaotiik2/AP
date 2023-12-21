@@ -46,6 +46,7 @@ $SECURITY_ADMIN_LEVEL->authorize();
                     <a href="/views/admin_panel/edit_service.php" >Modifier</a>
                     <a href="/views/admin_panel/delete_service.php" >Supprimer</a>
                 </div>
+                <a href="/views/admin.php" ><i class="fa-solid fa-door-open" id="retour"></i></a>
 
             </div>
         </div>
