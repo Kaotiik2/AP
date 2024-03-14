@@ -57,7 +57,7 @@ function new_pre_admission($values): false|string
     // End `patients` insertion
 
     // `hospitalisations` Insertion
-    $req = "INSERT INTO hospitalisations(num_secu, date_hospitalisation, heure_intervention, type_hospitalisation)
+    $req = "INSERT INTO hospitalisations(num_secu, date_hospitalisation, heure_intervention, type_hospitalisation, medecin_id)
         VALUES(
             :num_secu,
             :admission_date,
