@@ -31,8 +31,8 @@ $db = get_db();
 // Définir la date d'aujourd'hui
 $aujourdhui = date("Y-m-d");
 
-// Préparer la requête SQL pour sélectionner les hospitalisations futures
-$sql = "SELECT num_secu, date_hospitalisation, heure_intervention, type_hospitalisation, id FROM hospitalisations WHERE date_hospitalisation >= :aujourdhui ORDER BY date_hospitalisation ASC, heure_intervention ASC";
+// Modifier la requête SQL pour inclure le médecin
+$sql = "SELECT num_secu, date_hospitalisation, heure_intervention, type_hospitalisation, medecin FROM hospitalisations WHERE date_hospitalisation >= :aujourdhui ORDER BY date_hospitalisation ASC, heure_intervention ASC";
 
 // Préparer la requête
 $stmt = $db->prepare($sql);
@@ -46,10 +46,10 @@ $stmt->execute();
 // Vérifier si la requête retourne des résultats
 if ($stmt->rowCount() > 0) {
     // Début du tableau
-    echo "<table border='1'><tr><th>ID</th><th>Numéro de Sécurité Sociale</th><th>Date d'Hospitalisation</th><th>Heure d'Intervention</th><th>Type d'Hospitalisation</th></tr>";
+    echo "<table border='1'><tr><th>Numéro de Sécurité Sociale</th><th>Date d'Hospitalisation</th><th>Heure d'Intervention</th><th>Type d'Hospitalisation</th><th>Médecin</th></tr>";
     // Récupérer et afficher chaque ligne de résultat
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<tr><td>".$row["id"]."</td><td>".$row["num_secu"]."</td><td>".$row["date_hospitalisation"]."</td><td>".$row["heure_intervention"]."</td><td>".$row["type_hospitalisation"]."</td></tr>";
+        echo "<tr><td>".$row["num_secu"]."</td><td>".$row["date_hospitalisation"]."</td><td>".$row["heure_intervention"]."</td><td>".$row["type_hospitalisation"]."</td><td>".$row["medecin"]."</td></tr>";
     }
     echo "</table>";
 } else {
