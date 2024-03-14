@@ -71,7 +71,7 @@ function new_pre_admission($values): false|string
     $stmt->bindValue(":admission_date", $admission_date);
     $stmt->bindValue(":admission_time", $admission_time);
     $stmt->bindValue(":admission_type", $admission_type);
-    $stmt->bindValue(":admission_medecin", $admission_medecin);
+    $stmt->bindValue(":admission_medecin", $nom_medecin);
 
     $result = $stmt->execute();
 
@@ -79,7 +79,7 @@ function new_pre_admission($values): false|string
         return $db->errorCode();
     }
 
-    
+
     // `documents` Insertion
     if ($_POST["mineur"] == "on") {
         if ($_POST["parents_divorces"] == "on") {
