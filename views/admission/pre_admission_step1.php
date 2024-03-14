@@ -1,3 +1,4 @@
+
 <?php
 require_once "../../model/security.php";
 global $SECURITY_SECRETARY_LEVEL;
