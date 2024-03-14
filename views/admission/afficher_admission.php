@@ -32,7 +32,7 @@ $db = get_db();
 $aujourdhui = date("Y-m-d");
 
 // Modifier la requête SQL pour inclure le médecin
-$sql = "SELECT num_secu, date_hospitalisation, heure_intervention, type_hospitalisation, medecin_id FROM hospitalisations WHERE date_hospitalisation >= :aujourdhui ORDER BY date_hospitalisation ASC, heure_intervention ASC";
+$sql = "SELECT h.num_secu, h.date_hospitalisation, h.heure_intervention, h.type_hospitalisation, CONCAT(m.prenom, ' ', m.nom) AS medecin FROM hospitalisations h INNER JOIN medecins m ON h.medecin_id = m.id_medecin WHERE h.date_hospitalisation >= :aujourdhui ORDER BY h.date_hospitalisation ASC, h.heure_intervention ASC";
 
 // Préparer la requête
 $stmt = $db->prepare($sql);
@@ -49,7 +49,7 @@ if ($stmt->rowCount() > 0) {
     echo "<table border='1'><tr><th>Numéro de Sécurité Sociale</th><th>Date d'Hospitalisation</th><th>Heure d'Intervention</th><th>Type d'Hospitalisation</th><th>Médecin</th></tr>";
     // Récupérer et afficher chaque ligne de résultat
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<tr><td>".$row["num_secu"]."</td><td>".$row["date_hospitalisation"]."</td><td>".$row["heure_intervention"]."</td><td>".$row["type_hospitalisation"]."</td><td>".$row["medecin_id"]."</td></tr>";
+        echo "<tr><td>".$row["num_secu"]."</td><td>".$row["date_hospitalisation"]."</td><td>".$row["heure_intervention"]."</td><td>".$row["type_hospitalisation"]."</td><td>".$row["medecin"]."</td></tr>";
     }
     echo "</table>";
 } else {
