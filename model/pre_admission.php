@@ -176,5 +176,7 @@ function new_pre_admission($values): false|string
     if (!$personne_a_prevenir->register())
         return "Can't register prevent person";
 
+        session_start();
+    $_SESSION["dernier_secu"] = $num_secu;
     return false;
 }
