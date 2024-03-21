@@ -40,6 +40,7 @@ global $SECURITY_ADMIN_LEVEL;
                     <a href="/views/admin_panel/panel.php">Panel d'administration</a>
                 </div>
             </div>
+
         </section>
 
     </div>

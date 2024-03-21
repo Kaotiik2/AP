@@ -33,14 +33,14 @@ if ($connexion->connect_error) {
 
 // Traitement des données soumises par le formulaire de suppression
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_service = $_POST["produit"];
+    $nom_service = $_POST["produit"];
     
-    // Requête SQL pour supprimer le produit
-    $deleteSql = "DELETE FROM services WHERE id_service=?";
+    // Requête SQL pour supprimer le service
+    $deleteSql = "DELETE FROM services WHERE nom_service=?";
     $deleteStmt = $connexion->prepare($deleteSql);
 
     if ($deleteStmt) {
-        $deleteStmt->bind_param("i", $id_service);
+        $deleteStmt->bind_param("s", $nom_service);
         if ($deleteStmt->execute()) {
             echo "Le service a été supprimé avec succès.";
         } else {
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Récupérer tous les postes de la base de données
 $services = array(); // Tableau pour stocker les services
 
-$sql = "SELECT id_service, nom_service FROM services";
+$sql = "SELECT nom_service FROM services";
 $result = $connexion->query($sql);
 
 if ($result->num_rows > 0) {
@@ -82,9 +82,8 @@ $connexion->close();
     <select id="produit" name="produit">
         <?php
         foreach ($services as $service) {
-            $serviceId = $service['id_service'];
             $serviceNom = $service['nom_service'];
-            echo "<option value='$serviceId'>$serviceNom</option>";
+            echo "<option value='$serviceNom'>$serviceNom</option>";
         }
         ?>
     </select>
@@ -95,8 +94,8 @@ $connexion->close();
 
 <a href="/views/admin_panel/panel.php" ><i class="fa-solid fa-door-open" id="retour"></i></a>
 
+
 </div>
 
 </body>
 </html>
-

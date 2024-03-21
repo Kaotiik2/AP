@@ -57,12 +57,13 @@ function new_pre_admission($values): false|string
     // End `patients` insertion
 
     // `hospitalisations` Insertion
-    $req = "INSERT INTO hospitalisations(num_secu, date_hospitalisation, heure_intervention, type_hospitalisation)
+    $req = "INSERT INTO hospitalisations(num_secu, date_hospitalisation, heure_intervention, type_hospitalisation, medecin_id)
         VALUES(
             :num_secu,
             :admission_date,
             :admission_time,
-            :admission_type
+            :admission_type,
+            :admission_medecin
     )";
 
     $stmt = $db->prepare($req);
@@ -70,6 +71,7 @@ function new_pre_admission($values): false|string
     $stmt->bindValue(":admission_date", $admission_date);
     $stmt->bindValue(":admission_time", $admission_time);
     $stmt->bindValue(":admission_type", $admission_type);
+    $stmt->bindValue(":admission_medecin", $nom_medecin);
 
     $result = $stmt->execute();
 
@@ -77,7 +79,6 @@ function new_pre_admission($values): false|string
         return $db->errorCode();
     }
 
-    // End `hospitalisations` insertion
 
     // `documents` Insertion
     if ($_POST["mineur"] == "on") {

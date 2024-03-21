@@ -32,19 +32,16 @@ if ($connexion->connect_error) {
 }
 
 // Traitement des données soumises par le formulaire de modification
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $nom_service = $_POST["nom_service"];
-        $id_service = $_POST["produit"];
-    
-    // Vous pouvez ajouter la logique de mise à jour de la base de données ici
-    // Utilisez la variable $id pour identifier le produit à mettre à jour
-    
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nom_service = $_POST["nom_service"];
+    $ancien_nom_service = $_POST["ancien_nom_service"];
+
     // Exemple de requête SQL pour la mise à jour
-    $updateSql = "UPDATE services SET nom_service=? WHERE id_service=?";
+    $updateSql = "UPDATE services SET nom_service=? WHERE nom_service=?";
     $updateStmt = $connexion->prepare($updateSql);
 
     if ($updateStmt) {
-        $updateStmt->bind_param("si", $nom_service, $id_service);
+        $updateStmt->bind_param("ss", $nom_service, $ancien_nom_service);
         if ($updateStmt->execute()) {
             echo "Le service a été mis à jour avec succès.";
         } else {
@@ -59,7 +56,7 @@ if ($connexion->connect_error) {
 // Récupérer tous les services de la base de données
 $services = array(); // Tableau pour stocker les services
 
-$sql = "SELECT id_service, nom_service FROM services";
+$sql = "SELECT nom_service FROM services";
 $result = $connexion->query($sql);
 
 if ($result->num_rows > 0) {
@@ -73,43 +70,36 @@ $connexion->close();
 ?>
 
 <div class="mainscreen">
-
     <div class="card">
+        <div class="leftside">
+            <img src="/static/images/LPFS_logo.png" alt="">
+        </div>
 
-      <div class="leftside">
-        <img src="/static/images/LPFS_logo.png" alt="">
-      </div>
+        <h2 class="titre_form">Formulaire de modification de service</h2> 
+        <form method="post" class="formulaire" onsubmit="return validateForm();">
+            <label for="ancien_nom_service">Sélectionnez un service :</label>
+            <select id="ancien_nom_service" name="ancien_nom_service">
+                <?php
+                foreach ($services as $service) {
+                    $serviceNom = $service['nom_service'];
+                    echo "<option value='$serviceNom'>$serviceNom</option>";
+                }
+                ?>
+            </select>
+            <br><br>
 
-      <h2 class="titre_form">Formulaire de modification de service</h2> 
-<form method="post" class="formulaire" onsubmit="return validateForm();">
-    <label for="produit">Sélectionnez un service :</label>
-    <select id="produit" name="produit">
-        <?php
-        foreach ($services as $service) {
-            $serviceId = $service['id_service'];
-            $serviceNom = $service['nom_service'];
-            echo "<option value='$serviceId'>$serviceNom</option>";
-        }
-        ?>
-    </select>
-    <br><br>
+            <label for="nom_service">Nom du service :</label>
+            <input type="text" id="nom_service" name="nom_service" required><br><br>
 
-    <label for="nom_service">Nom du service :</label>
-    <input type="text" id="nom_service" name="nom_service" required><br><br>
+            <!-- Messages d'erreur -->
+            <p id="error-nom" class="error-message"></p>
+            <p id="error-prix" class="error-message"></p>
 
-    <!-- Messages d'erreur -->
-    <p id="error-nom" class="error-message"></p>
-    <p id="error-prix" class="error-message"></p>
+            <!-- Ajoutez d'autres champs ici si nécessaire -->
 
-
-    <!-- Ajoutez d'autres champs ici si nécessaire -->
-
-    <input type="submit" value="Mettre a jour le service" id="ajoute">
-    
-</form>
-<a href="/views/admin_panel/panel.php" ><i class="fa-solid fa-door-open" id="retour"></i></a>
-
+            <input type="submit" value="Mettre à jour le service" id="ajoute">
+        </form>
+        <a href="/views/admin_panel/panel.php" ><i class="fa-solid fa-door-open" id="retour"></i></a>
     </div>
-
 </body>
 </html>

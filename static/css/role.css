@@ -1,11 +1,54 @@
-/* Style de la boîte de connexion */
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ajustez la hauteur de la section selon vos préférences */
+}
 
-  /* Style du logo */
-  
-  /* Style du formulaire de connexion */
+.card {
+  padding: 30px;
+  width: 400px; /* Ajustez la largeur de la carte selon vos besoins */
+  background-color: #fff; /* Couleur de fond de la carte */
+  border-radius: 10px; /* Bord arrondi de la carte */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  overflow: hidden; /* Empêche le débordement des éléments enfants */
+}
 
-  p{
-    font-weight: bold;
-    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+.leftside img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+}
 
-  }
+#ajoute {
+  padding: 10px; /* Ajustez la marge intérieure de la partie inférieure de la carte */
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+}
+
+.formulaire{
+  text-align: center;
+}
+
+.maDiv {
+  margin-top: 20px;
+  margin-bottom: 30px; /* Ajustez la marge entre chaque section selon vos préférences */
+}
+
+.mainscreen{
+  margin: 15% auto;
+  display: flex;
+  justify-content: center;
+}
+
+ .titre_form {
+  font-weight: 500;
+  text-align: center;
+}
+
+i{
+  color: cornflowerblue;
+}

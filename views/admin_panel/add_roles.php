@@ -13,7 +13,7 @@ $SECURITY_ADMIN_LEVEL->authorize();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/role.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Ajouter un role</title>
+    <title>Ajouter un roles</title>
 </head>
 
 <body>
@@ -65,7 +65,7 @@ $SECURITY_ADMIN_LEVEL->authorize();
                 <img src="/static/images/LPFS_logo.png" alt="">
             </div>
 
-            <p class="titre_form">Formulaire d'ajout de Role</p>
+            <h3 class="titre_form">Formulaire d'ajout de Role</h3>
             <form method="post" enctype="multipart/form-data" class="formulaire">
                 <label for="nom">Nom du Role:</label>
                 <input type="text" id="intitule_poste" name="intitule_poste" required><br><br>
