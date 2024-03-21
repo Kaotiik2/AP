@@ -42,7 +42,7 @@ input[type="text"], select {
 
 /* Styles pour le formulaire */
 form {
-    margin-bottom: 20px;
+    margin: 80px;
 }
 
 /* Styles pour le message de succès */
