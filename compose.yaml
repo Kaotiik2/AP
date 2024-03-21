@@ -9,19 +9,7 @@ services:
       - database_data:/var/lib/mysql:rw
     ports:
       - 3306:3306
-
-  ap:
-    container_name: ap_httpd
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: "always"
-    
-    volumes:
-      - ./:/var/www/html/
-    ports:
-      - 8000:80
-
+      
   phpmyadmin:
     image: phpmyadmin:latest
     environment:
