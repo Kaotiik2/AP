@@ -1,31 +1,56 @@
+/* Styles pour la table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
 
-        /* Style global du tableau */
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin: 120px auto;
-            font-family: Arial, sans-serif;
-            font-size: 0.9em;
-        }
+th, td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
 
-        /* Style des cellules du tableau */
-        table, th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
+th {
+    background-color: #f2f2f2;
+}
 
-        /* Style de l'en-tête du tableau */
-        th {
-            background-color: #f2f2f2;
-            color: #333;
-        }
+/* Styles pour les boutons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
 
-        /* Style des lignes du tableau pour améliorer la lisibilité */
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
+button:hover {
+    background-color: #45a049;
+}
 
-        /* Style au survol d'une ligne du tableau */
-        tr:hover {
-            background-color: #eaeaea;
-        }
+/* Styles pour les inputs */
+input[type="text"], select {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Styles pour le formulaire */
+form {
+    margin-bottom: 20px;
+}
+
+/* Styles pour le message de succès */
+.success-message {
+    color: green;
+}
+
+/* Styles pour le message d'erreur */
+.error-message {
+    color: red;
+}
