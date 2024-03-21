@@ -157,7 +157,6 @@ function new_pre_admission($values): false|string
         $stmt->bindValue(":carte_identite_verso", file_get_contents($filename = $_FILES["ci_verso"]["tmp_name"]));
         $stmt->bindValue(":carte_vitale", file_get_contents($filename = $_FILES["carte_vitale"]["tmp_name"]));
         $stmt->bindValue(":carte_mutuelle", file_get_contents($filename = $_FILES["carte_mutuelle"]["tmp_name"]));
-        $stmt->bindValue(":livret_famille", file_get_contents($filename = $_FILES["livret_famille"]["tmp_name"]));
     }
 
     $result = $stmt->execute();

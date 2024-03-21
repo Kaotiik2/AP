@@ -42,6 +42,9 @@ class Personne
 
     public static function from_form(mixed $form, TypePersonne $type): static
     {
+        // var_dump($form);
+        // exit();
+
         extract($form);
         switch ($type) {
             case TypePersonne::PersonneDeConfiance: {
@@ -66,10 +69,9 @@ class Personne
             TypePersonne::PersonneAPrevenir => "personnes_a_prevenir",
         };
 
-        $req = "INSERT INTO :table(nom, prenom, telephone, adresse, num_secu) VALUES (:nom, :prenom, :telephone, :adresse, :num_secu)";
+        $req = "INSERT INTO $table(nom, prenom, telephone, adresse, num_secu) VALUES (:nom, :prenom, :telephone, :adresse, :num_secu)";
         $stmt = $db->prepare($req);
 
-        $stmt->bindValue(":table", $table);
         $stmt->bindValue(":nom", $this->nom);
         $stmt->bindValue(":prenom", $this->prenom);
         $stmt->bindValue(":telephone", $this->telephone);

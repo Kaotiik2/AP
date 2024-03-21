@@ -19,28 +19,47 @@ class Service
         $this->service_staff = $staff;
     }
 
-	/// Returns all services from the table ``services``.
+    /// Returns all services from the table ``services``.
     static function all_services(): array|false
     {
-		$db = get_db();
+        $db = get_db();
 
-		$req = "SELECT nom_service FROM services";
-		$stmt = $db->prepare($req);
+        $req = "SELECT nom_service FROM services";
+        $stmt = $db->prepare($req);
 
-		if (!$stmt->execute())
-			return false;
+        if (!$stmt->execute())
+            return false;
 
-		$result = $stmt->fetchAll();
+        $result = $stmt->fetchAll();
 
-		$returned = [];
-		foreach ($result as $row) {
-			$returned[] = Service::get_service($row["nom_service"]);
-		}
+        $returned = [];
+        foreach ($result as $row) {
+            $returned[] = Service::get_service($row["nom_service"]);
+        }
 
-		return $returned;
+        return $returned;
     }
 
-	/// Returns a service from the table ``services`` where its name == $service_name.
+    static function services_names(): array|false
+    {
+        $db = get_db();
+        $req = "SELECT nom_service from services";
+        $stmt = $db->prepare($req);
+
+        if (!$stmt->execute())
+            return false;
+
+        $result = $stmt->fetchAll();
+        $returned = [];
+
+        foreach ($result as $row) {
+            $returned[] = $row["nom_service"];
+        }
+
+        return $returned;
+    }
+
+    /// Returns a service from the table ``services`` where its name == $service_name.
     public static function get_service(string $service_name): Service|false
     {
         $db = get_db();
@@ -61,27 +80,25 @@ class Service
         return new Service($row["nom_service"], User::users_from_service($row["nom_service"]));
     }
 
-	public static function new_service(string $service_name): bool
-	{
-		$db = get_db();
+    public static function new_service(string $service_name): bool
+    {
+        $db = get_db();
 
-		$req = "INSERT INTO services (nom_service) VALUES (:service_name)";
-		$stmt = $db->prepare($req);
-		$stmt->bindParam(":service_name", $service_name);
+        $req = "INSERT INTO services (nom_service) VALUES (:service_name)";
+        $stmt = $db->prepare($req);
+        $stmt->bindParam(":service_name", $service_name);
 
-		return $stmt->execute();
-	}
+        return $stmt->execute();
+    }
 
-	public function delete_service(): bool
-	{
-		$db = get_db();
+    public function delete_service(): bool
+    {
+        $db = get_db();
 
-		$req = "DELETE FROM services WHERE nom_service = :service_name";
-		$stmt = $db->prepare($req);
-		$stmt->bindParam(":service_name", $this->service_name);
+        $req = "DELETE FROM services WHERE nom_service = :service_name";
+        $stmt = $db->prepare($req);
+        $stmt->bindParam(":service_name", $this->service_name);
 
-		return $stmt->execute();
-	}
-
-
+        return $stmt->execute();
+    }
 }
