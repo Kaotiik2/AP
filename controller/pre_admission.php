@@ -9,7 +9,7 @@ use model;
 $result = model\new_pre_admission($_POST);
 
 if (!$result) {
-    header("Location: views/admission/pre_admission_result.php");
+    header("Location: /views/admission/pre_admission_result.php");
 } else {
-    header("Location: views/admission/pre_admission_result.php?error=" . $result);
+    header("Location: /views/admission/pre_admission_result.php?error=" . htmlspecialchars($result));
 }
