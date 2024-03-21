@@ -14,6 +14,11 @@
         <p id="success_message" class="hidden text-green-500 font-bold">Enregistrement réussi !</p>
         <p id="error_message" class="hidden text-red-500 font-bold">Échec de l'enregistrement: <?php echo $_GET["error"]; ?></p>
         <a href="/controller/panel.php" class="text-blue-500 underline">Retourner à l'accueil</a>
+
+        <!-- Ajout du bouton pour télécharger le PDF -->
+        <a href="/pdf.php" class="block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Télécharger le PDF
+        </a>
     </div>
 </body>
 
