@@ -9,7 +9,7 @@ $user = User::from_session();
 $redirect_route = match ($user->id_role) {
     0 => "/views/admin.php",
     2 => "/views/medecin.php",
-    3 => "/views/admission/pre_admission_step0.php",
+    3 => "/views/panel_secreteriat.php",
     default => "/views/login.php?error=1"
 };
 
