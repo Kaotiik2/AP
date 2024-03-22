@@ -37,7 +37,7 @@ $SECURITY_SECRETARY_LEVEL->authorize();
                     <div class="icon-1">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
-                    <a href="/views/admin_panel/panel.php">Prochaines Hospitalisations</a>
+                    <a href="/views/admission/afficher_admission.php">Prochaines Hospitalisations</a>
                 </div>
             </div>
 

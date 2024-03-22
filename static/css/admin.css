@@ -64,3 +64,15 @@ a:hover{
     margin-bottom: 20px;
     padding: 5px;
 }
+
+.btncreer{
+    text-decoration: revert-layer;
+    margin: 0 auto;
+    border: none;
+}
+
+
+.divcreer{
+    text-align: center;
+}
+

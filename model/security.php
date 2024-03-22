@@ -31,4 +31,5 @@ class Security {
 }
 
 static $SECURITY_ADMIN_LEVEL = new Security([ 0 ]);
+static $SECURITY_MEDECIN_LEVEL = new Security([ 2 ]);
 static $SECURITY_SECRETARY_LEVEL = new Security([ 3 ]);

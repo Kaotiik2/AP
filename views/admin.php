@@ -11,7 +11,7 @@ global $SECURITY_ADMIN_LEVEL;
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>LOGIN PAGE LPF</title>
+    <title>LPFS - Panel Admin</title>
     <link href="/static/css/admin.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -40,14 +40,15 @@ global $SECURITY_ADMIN_LEVEL;
                     <a href="/views/admin_panel/panel.php">Panel d'administration</a>
                 </div>
             </div>
-
+            <!-- Ajouter un bouton "Créer un compte" à la fin de la section #infos -->
+            
         </section>
 
     </div>
 
-    <style>
-
-    </style>
+    <div class="divcreer">
+    <a href="/views/create_account.php" class="btncreer">Créer un compte</a>
+    </div>
 
 </body>
 

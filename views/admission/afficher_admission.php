@@ -1,3 +1,10 @@
+<?php
+require_once "../model/security.php";
+global $SECURITY_SECRETARY_LEVEL;
+
+$SECURITY_SECRETARY_LEVEL->authorize();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,7 +19,7 @@
     </div>
 <div class="content">
 
-<h1>Prochaine Admissions</h1>
+<h1>Prochaine Hospitalisations</h1>
 <?php
 include '../../lib/config.php';
 
