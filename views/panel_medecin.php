@@ -1,24 +1,28 @@
 <?php
 // Informations de connexion à la base de données
-$serveur = "localhost";
-$nomUtilisateur = "utilisateur";
-$motDePasse = "motdepasse";
-$nomBaseDeDonnees = "nom_de_la_base_de_donnees";
+$serveur = "localhost:8889";
+$nomUtilisateur = "root";
+$motDePasse = "root";
+$nomBaseDeDonnees = "LPFS";
+
+require_once "../model/users.php";
+use model\User;
+
+$medecin = User::from_session();
 
 // Supposons que $idMedecinConnecte contient l'ID du médecin connecté
-$idMedecinConnecte = $_SESSION['idMedecinConnecte']; // Cela dépend de votre système d'authentification
-
+$idMedecinConnecte = $medecin->id_user;
 try {
     // Connexion à la base de données
     $connexion = new PDO("mysql:host=$serveur;dbname=$nomBaseDeDonnees", $nomUtilisateur, $motDePasse);
     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Requête SQL pour récupérer les prochains rendez-vous du médecin connecté
-    $requete = "SELECT m.nom AS nom_medecin, m.prenom AS prenom_medecin, h.date_hospitalisation, h.heure_intervention, h.type_hospitalisation, p.nom AS nom_patient, p.prenom AS prenom_patient
+    $requete = "SELECT m.nom AS nom_medecin, m.prenom AS prenom_medecin, h.date_hospitalisation, h.heure_intervention, h.type_hospitalisation, p.nom_naissance AS nom_patient, p.prenom AS prenom_patient
                 FROM hospitalisations h
                 JOIN medecins m ON h.medecin_id = m.id_medecin
                 JOIN patients p ON h.id_patient = p.num_secu
-                WHERE h.medecin_id = :idMedecinConnecte
+                WHERE h.medecin_id = :idMedecinConnecte AND h.medecin_id = $idMedecinConnecte
                 ORDER BY h.date_hospitalisation, h.heure_intervention";
     
     // Préparation de la requête

@@ -1,10 +1,3 @@
-<?php
-require_once "../model/security.php";
-global $SECURITY_ADMIN_LEVEL;
-
-    $SECURITY_ADMIN_LEVEL->authorize();
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -13,6 +6,26 @@ global $SECURITY_ADMIN_LEVEL;
     <!-- Inclure Tailwind CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <script src="/static/js/create_account.js" defer></script>
+    <script>
+        // Fonction pour gérer la visibilité du champ "Service"
+        function toggleServiceVisibility() {
+            var role = document.querySelector('select[name="role"]');
+            var serviceField = document.querySelector('select[name="service"]');
+            if (role.value === "Médecin") {
+                serviceField.parentNode.style.display = "block";
+            } else {
+                serviceField.parentNode.style.display = "none";
+            }
+        }
+
+        // Attacher un événement de changement au champ "Rôle"
+        document.addEventListener('DOMContentLoaded', function () {
+            var role = document.querySelector('select[name="role"]');
+            role.addEventListener('change', toggleServiceVisibility);
+            // Appeler la fonction une fois au chargement initial pour gérer l'état initial
+            toggleServiceVisibility();
+        });
+    </script>
 </head>
 
 <body class="bg-gray-100 flex justify-center items-center h-screen">
@@ -51,18 +64,6 @@ global $SECURITY_ADMIN_LEVEL;
             </div>
 
             <div class="mb-4">
-                <label for="service" class="block text-sm font-medium text-gray-600">Service</label>
-                <select name="service" required class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
-                    <?php
-                    require_once "../model/services.php";
-
-                    use model\Service;
-
-                    foreach (Service::services_names() as $service) {
-                        echo "<option value=\"{$service}\">{$service}</option>";
-                    }
-                    ?>
-                </select>
                 <label for="role" class="block text-sm font-medium text-gray-600">Rôle</label>
                 <select name="role" required class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
                     <?php
@@ -72,6 +73,21 @@ global $SECURITY_ADMIN_LEVEL;
 
                     foreach (Role::get_roles() as $role) {
                         echo "<option value=\"{$role->role_name}\">{$role->role_name}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div class="mb-4" style="display: none;">
+                <label for="service" class="block text-sm font-medium text-gray-600">Service</label>
+                <select name="service" required class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                    <?php
+                    require_once "../model/services.php";
+
+                    use model\Service;
+
+                    foreach (Service::services_names() as $service) {
+                        echo "<option value=\"{$service}\">{$service}</option>";
                     }
                     ?>
                 </select>
