@@ -1,8 +1,8 @@
 <?php
 // Informations de connexion à la base de données
-$serveur = "192.168.20.20";
+$serveur = "localhost:8889";
 $nomUtilisateur = "root";
-$motDePasse = "Sio2021";
+$motDePasse = "root";
 $nomBaseDeDonnees = "LPFS";
 
 require_once "../model/users.php";
@@ -12,51 +12,45 @@ $medecin = User::from_session();
 
 // Supposons que $idMedecinConnecte contient l'ID du médecin connecté
 $idMedecinConnecte = $medecin->id_user;
+
 try {
     // Connexion à la base de données
     $connexion = new PDO("mysql:host=$serveur;dbname=$nomBaseDeDonnees", $nomUtilisateur, $motDePasse);
     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Requête SQL pour récupérer les prochains rendez-vous du médecin connecté
-    $requete = "SELECT m.nom AS nom_medecin, m.prenom AS prenom_medecin, h.date_hospitalisation, h.heure_intervention, h.type_hospitalisation, p.nom_naissance AS nom_patient, p.prenom AS prenom_patient
-                FROM hospitalisations h
-                JOIN medecins m ON h.medecin_id = m.id_medecin
-                JOIN patients p ON h.id_patient = p.num_secu
-                WHERE h.medecin_id = :idMedecinConnecte AND h.medecin_id = $idMedecinConnecte
-                ORDER BY h.date_hospitalisation, h.heure_intervention";
-    
-    // Préparation de la requête
-    $statement = $connexion->prepare($requete);
-    
-    // Liaison des paramètres
-    $statement->bindParam(':idMedecinConnecte', $idMedecinConnecte, PDO::PARAM_INT);
-    
-    // Exécution de la requête
-    $statement->execute();
+    // Préparation de la requête SQL pour sélectionner les hospitalisations du médecin connecté avec les informations des patients
+    $requete = $connexion->prepare("SELECT hospitalisations.id, hospitalisations.date_hospitalisation, hospitalisations.heure_intervention, hospitalisations.type_hospitalisation, patients.* FROM hospitalisations INNER JOIN patients ON hospitalisations.num_secu = patients.num_secu WHERE hospitalisations.medecin_id = :idMedecin");
+    $requete->bindParam(':idMedecin', $idMedecinConnecte);
+    $requete->execute();
 
     // Récupération des résultats
-    $resultats = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $hospitalisations = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-    // Affichage des résultats
-    echo "<h1>Vos prochains rendez-vous :</h1>";
+    // Affichage du tableau HTML
     echo "<table border='1'>";
-    echo "<tr><th>Nom Médecin</th><th>Prénom Médecin</th><th>Date Hospitalisation</th><th>Heure Intervention</th><th>Type Hospitalisation</th><th>Nom Patient</th><th>Prénom Patient</th></tr>";
-    foreach ($resultats as $row) {
+    echo "<tr><th>ID Hospitalisation</th><th>Date Hospitalisation</th><th>Heure Intervention</th><th>Type Hospitalisation</th><th>Informations Patient</th></tr>";
+
+    // Traitement des résultats
+    foreach ($hospitalisations as $hospitalisation) {
+        // Afficher chaque hospitalisation dans une ligne de tableau
         echo "<tr>";
-        echo "<td>".$row['nom_medecin']."</td>";
-        echo "<td>".$row['prenom_medecin']."</td>";
-        echo "<td>".$row['date_hospitalisation']."</td>";
-        echo "<td>".$row['heure_intervention']."</td>";
-        echo "<td>".$row['type_hospitalisation']."</td>";
-        echo "<td>".$row['nom_patient']."</td>";
-        echo "<td>".$row['prenom_patient']."</td>";
+        echo "<td>" . $hospitalisation['id'] . "</td>";
+        echo "<td>" . $hospitalisation['date_hospitalisation'] . "</td>";
+        echo "<td>" . $hospitalisation['heure_intervention'] . "</td>";
+        echo "<td>" . $hospitalisation['type_hospitalisation'] . "</td>";
+        echo "<td>";
+        // Afficher les informations du patient associé à l'hospitalisation
+        echo "Numéro de Sécurité Sociale: " . $hospitalisation['num_secu'] . ", Nom: " . $hospitalisation['nom_naissance'] . ", Prénom: " . $hospitalisation['prenom'] . ", Date de Naissance: " . $hospitalisation['date_naissance'];
+        // Vous pouvez ajouter d'autres informations du patient ici
+        echo "</td>";
         echo "</tr>";
     }
+
     echo "</table>";
 
 } catch(PDOException $e) {
-    // En cas d'erreur de connexion ou d'exécution de la requête
-    echo "Erreur : " . $e->getMessage();
+    // Gérer les exceptions PDO
+    echo "Erreur de connexion à la base de données: " . $e->getMessage();
 }
 
 // Fermeture de la connexion à la base de données
