@@ -10,6 +10,7 @@ class Medecin {
 	public string $prenom;
 	public int $discipline;
 	public ?int $id;
+	public int $id_user;
 	public string $nom_service;
 
 	function __construct(string $nom, string $prenom, int $discipline, string $nom_service, int $id = null) {
@@ -83,6 +84,26 @@ class Medecin {
 		$row = $result[0];
 		return new Medecin($row["nom"], $row["prenom"], $row["discipline"], $row["nom_service"], $id = $row["id_medecin"]);
 	}
+
+	static function from_user_id(int $id): Medecin|false {
+		$db = get_db();
+
+		$req = "SELECT * FROM medecins WHERE id_user = :id";
+		$stmt = $db->prepare($req);
+		$stmt->bindParam(":id", $id);
+
+		if (!$stmt->execute())
+			return false;
+
+		$result = $stmt->fetchAll();
+
+		if (sizeof($result) != 1)
+			return false;
+
+		$row = $result[0];
+		return new Medecin($row["nom"], $row["prenom"], $row["discipline"], $row["nom_service"], $id = $row["id_medecin"]);
+	}
+
 
 	static function delete(int $id): bool {
 		$db = get_db();

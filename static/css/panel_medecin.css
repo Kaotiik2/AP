@@ -1,0 +1,105 @@
+body {
+    font-family: 'Roboto', sans-serif !important;    margin: 0;
+    padding: 0;
+  }
+
+.logoimg {
+    width: 20%; 
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+        /* Style de la div contenant le contenu */
+        .content {
+            margin: 80px auto; /* Pour centrer horizontalement */
+            max-width: 900px; /* Largeur maximale du contenu */
+            padding: 20px; /* Espacement intérieur */
+            border: 2px solid #dddddd; /* Bordure autour du contenu */
+            border-radius: 10px; /* Coins arrondis */
+        }
+
+        /* Style de la div contenant le contenu */
+
+        /* Style du tableau */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        /* Styliser les boutons */
+        button {
+            background-color: #007bff; /* Couleur de fond */
+            color: white; /* Couleur du texte */
+            padding: 10px 20px; /* Espacement intérieur */
+            border: none; /* Pas de bordure */
+            cursor: pointer; /* Curseur de type pointeur */
+        }
+
+        button:hover {
+            background-color: #00458e; /* Couleur de fond au survol */
+        }
+
+        /* Styliser les cellules du tableau */
+        td {
+            padding: 8px; 
+            background-color: white;/* Espacement intérieur */
+        }
+
+        /* Styliser les champs de saisie */
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%; /* Largeur de 100% */
+            padding: 8px; /* Espacement intérieur */
+            margin-top: 4px; /* Marge supérieure */
+            margin-bottom: 8px; /* Marge inférieure */
+            box-sizing: border-box; /* Taille incluant la bordure */
+        }
+        
+        /* Ajuster la taille des options dans les menus déroulants */
+        select {
+            min-width: 150px; /* Largeur minimale */
+            max-width: 300px; /* Largeur maximale */
+        }
+
+        .success-message {
+            text-align: center;
+            color: #4CAF50; /* Couleur du texte verte */
+            font-weight: bold; /* Texte en gras */
+            margin-top: 10px; /* Marge supérieure */
+        }
+
+        input[type="time"] {
+            width: 100%; /* Largeur de 100% */
+            padding: 6px; /* Espacement intérieur */
+            margin-top: 4px; /* Marge supérieure */
+            margin-bottom: 8px; /* Marge inférieure */
+            box-sizing: border-box; /*Taille de la police */
+        }
+        
+        /* Style supplémentaire pour le champ de l'horloge lorsqu'il est survolé */
+        input[type="time"]:hover {
+            border-color: #999; /* Change la couleur de la bordure lors du survol */
+        }
