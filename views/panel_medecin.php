@@ -1,8 +1,8 @@
 <?php
 // Informations de connexion à la base de données
-$serveur = "localhost:8889";
+$serveur = "192.168.20.20";
 $nomUtilisateur = "root";
-$motDePasse = "root";
+$motDePasse = "Sio2021";
 $nomBaseDeDonnees = "LPFS";
 
 require_once "../model/users.php";

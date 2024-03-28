@@ -24,10 +24,10 @@ $SECURITY_SECRETARY_LEVEL->authorize();
 
 try {
     // Connexion à la base de données avec PDO
-    $host = 'localhost:8889';
+    $host = '192.168.20.20';
     $dbname = 'LPFS';
     $username = 'root';
-    $password = 'root';
+    $password = 'sio2021';
     $db = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
