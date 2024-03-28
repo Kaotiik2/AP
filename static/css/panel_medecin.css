@@ -27,8 +27,6 @@ body {
         /* Style du tableau */
         table {
             border-collapse: collapse;
-            width: 85%;
-            margin: 120px;
         }
         
         th, td {

@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="/static/css/panel_medecin.css">
 </head>
 <body>
+<div class="container">
+    <div class="logo">
+    <img src="/static/images/LPFS_logo.png" alt="Logo de votre site" class="logoimg">
+    </div>
+<div class="content">
 <?php
 // Informations de connexion à la base de données
 $serveur = "localhost:8889";
