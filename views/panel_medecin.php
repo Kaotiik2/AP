@@ -1,3 +1,8 @@
+<?php
+require_once "../../model/security.php";
+global $SECURITY_MEDECIN_LEVEL;
+$SECURITY_MEDECIN_LEVEL->authorize();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
