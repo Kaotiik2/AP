@@ -1,11 +1,11 @@
 <?php
-require('fpdf/fpdf.php');
+require('FPDF/fpdf.php');
 
 // Connexion à la base de données
-$servername = "localhost:8889";
+$servername = "localhost:3306";
 $username = "root";
-$password = "root";
-$dbname = "lpfs";
+$password = "Sio2021";
+$dbname = "LPFS";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
