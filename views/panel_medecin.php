@@ -19,9 +19,9 @@ $SECURITY_MEDECIN_LEVEL->authorize();
 <div class="content">
 <?php
 // Informations de connexion à la base de données
-$serveur = "localhost:8889";
+$serveur = "localhost:3306";
 $nomUtilisateur = "root";
-$motDePasse = "root";
+$motDePasse = "Sio2021";
 $nomBaseDeDonnees = "LPFS";
 
 require_once "../model/users.php";
